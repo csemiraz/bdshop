@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +12,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'PublicController@index')->name('/');
+
+
+Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {
+    Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
+
+    Route::get('category/manage-category', 'CategoryController@manageCategory')->name('manage-category');
+});
+
+Route::group(['prefix'=>'user', 'namespace'=>'user', 'middleware'=>['auth', 'user']], function() {
+    Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
+});
