@@ -58,7 +58,7 @@
                 <div class="collapse" id="category">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="">
+                            <a href="{{ route('add-category') }}">
                                 <span class="sub-item">Create Category</span>
                             </a>
                         </li>
