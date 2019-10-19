@@ -72,21 +72,21 @@
             </li>
 
             <li class="nav-item">
-                <a data-toggle="collapse" href="#base">
+                <a data-toggle="collapse" href="#brand">
                     <i class="fas fa-layer-group"></i>
-                    <p>Base</p>
+                    <p>Brand</p>
                     <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="brand">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="">
-                                <span class="sub-item">Avatars</span>
+                            <a href="{{ route('brands.create') }}">
+                                <span class="sub-item">Add Brand</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <span class="sub-item">Buttons</span>
+                            <a href="{{ route('brands.index') }}">
+                                <span class="sub-item">Manage Brand</span>
                             </a>
                         </li>
                     </ul>

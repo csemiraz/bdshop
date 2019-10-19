@@ -28,6 +28,10 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'a
     Route::get('category/publish-category/{id}', 'CategoryController@publishCategory')->name('publish-category');
     Route::get('category/unpublish-category/{id}', 'CategoryController@unpublishCategory')->name('unpublish-category');
     Route::get('category/delete-category/{id}', 'CategoryController@deleteCategory')->name('delete-category');
+
+    Route::resource('brands', 'BrandController');
+    Route::get('brands/publish/{brand}', 'BrandController@publish')->name('brands.publish');
+    Route::get('brands/unpublish/{brand}', 'BrandController@unpublish')->name('brands.unpublish');
 });
 
 Route::group(['prefix'=>'user', 'namespace'=>'user', 'middleware'=>['auth', 'user']], function() {
