@@ -20,7 +20,7 @@ Category: Manage-Category
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
-                        <table class="table table-hover>
+                        <table class="table table-hover">
                             <thead class=" thead-light">
                                 <tr>
                                     <th>SL</th>
@@ -36,7 +36,7 @@ Category: Manage-Category
                                 <tr>
                                     <th scope="row">{{ $key+1 }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
+                                    <td>{!! $category->description !!}</td>
                                     <td>
                                         <img src="{{ asset('assets/images/category/'.$category->image) }}" alt="{{ $category->name }}" style="width: 100px; height:100px">
                                     </td>

@@ -29,12 +29,13 @@
                         <div class="form-group row">
                             <label for="" class="col-md-2 col-form-label">Description</label>
                             <div class="col-md-10">
-                                <textarea name="description" class="form-control" cols="30" rows="10"
+                                <textarea id="mytextarea" name="description" class="form-control" cols="30" rows="10"
                                     placeholder="Brand Description...">{{ old('description') }}</textarea>
                                 <span
                                     class="text-danger">{{ $errors->has('description') ? $errors->first('description') : ''}}</span>
                             </div>
                         </div>
+                        
                         <div class="form-group row">
                             <label for="" class="col-md-2 col-form-label">Status</label>
                             <div class="col-md-10">

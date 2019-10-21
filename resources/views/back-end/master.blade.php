@@ -24,6 +24,15 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('assets/back-end/') }}/css/demo.css">
+
+	{{-- DataTables --}}
+	<link rel="stylesheet" href="{{ asset('assets/datatable/datatables.min.css') }}">
+
+	{{-- Toastr Notication --}}
+	<link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
+
+	
+	
 </head>
 <body>
 	<div class="wrapper">
@@ -161,6 +170,90 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{ asset('assets/back-end/') }}/js/setting-demo.js"></script>
 	<script src="{{ asset('assets/back-end/') }}/js/demo.js"></script>
+
+	{{-- TinyMce  --}}
+	<script src="{{ asset('assets/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+	<script>
+		tinymce.init({
+			selector: 'textarea'
+			});
+	</script>
+
+	{{-- DataTables --}}
+	<script src="{{ asset('assets/datatable/datatables.min.js') }}"></script>
+	<script>
+		$(document).ready( function () {
+		$('table').DataTable();
+		} );
+	</script>
+
+	{{-- Toastr Notification --}}
+	<script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
+	{!! Toastr::message() !!}
+
+	<script>
+		@if($errors->any())
+			@foreach($errors->all() as $error)
+				toastr.error('{{ $error }}', 'Error', {
+					"closeButton": true,
+					"debug": false,
+					"newestOnTop": false,
+					"progressBar": true,
+					"positionClass": "toast-top-right",
+					"preventDuplicates": false,
+					"onclick": null,
+					"showDuration": "300",
+					"hideDuration": "1000",
+					"timeOut": "5000",
+					"extendedTimeOut": "1000",
+					"showEasing": "swing",
+					"hideEasing": "linear",
+					"showMethod": "fadeIn",
+					"hideMethod": "fadeOut"
+				})
+			@endforeach
+		@endif
+	</script>
+
+	<!---- SweetAlert2 Js ----->
+	<script src="{{ asset('assets/sweetalert2/sweetalert2.all.min.js') }}"></script>
+	<script type="text/javascript">
+		function deleteData(id) {
+	      const swalWithBootstrapButtons = Swal.mixin({
+	      customClass: {
+	        confirmButton: 'btn btn-success',
+	        cancelButton: 'btn btn-danger'
+	      },
+	      buttonsStyling: false,
+	    })
+	
+	    swalWithBootstrapButtons.fire({
+	      title: 'Are you sure to delete?',
+	      text: "You won't be able to get back this!",
+	      type: 'warning',
+	      showCancelButton: true,
+	      confirmButtonText: 'Yes, delete it!',
+	      cancelButtonText: 'No, cancel!',
+	      reverseButtons: true
+	    }).then((result) => {
+	      if (result.value) {
+	        event.preventDefault();
+	        document.getElementById('delete-data-'+id).submit();
+	      } else if (
+	        // Read more about handling dismissals
+	        result.dismiss === Swal.DismissReason.cancel
+	      ) {
+	        swalWithBootstrapButtons.fire(
+	          'Cancelled',
+	          'Your data is safe :)',
+	          'error'
+	        )
+	      }
+	    })
+	    }
+	</script>
+
+
 	<script>
 		Circles.create({
 			id:'circles-1',

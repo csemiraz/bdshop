@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Brand;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class BrandController extends Controller
 {
@@ -37,13 +38,19 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
         $brand = new Brand();
         $brand->name = $request->name;
         $brand->description = $request->description;
         $brand->status = $request->status;
         $brand->save();
 
-        return redirect()->back()->with('message', 'Brand info saved successfully');
+        Toastr::success('Brand info saved successfully', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -116,6 +123,9 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->delete();
 
-        return redirect()->back()->with('message', 'Brand info deleted successfully');
+        Toastr::success('Brand info deleted successfully', 'Success');
+        return redirect()->back();
     }
+
+
 }

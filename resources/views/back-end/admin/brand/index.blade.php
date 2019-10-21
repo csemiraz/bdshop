@@ -20,7 +20,7 @@ Brand: Manage-Brand
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
-                        <table class="table table-hover>
+                        <table class="table table-hover">
                             <thead class=" thead-light">
                             <tr>
                                 <th>SL</th>
@@ -48,10 +48,11 @@ Brand: Manage-Brand
                                         <a href="{{ route('brands.edit', ['brand'=>$brand->id]) }}" title="edit"
                                             class="fas fa-edit text-secondary"></a>
 
-                                        <a href="{{ route('brands.destroy', ['brand'=>$brand->id]) }}" title="delete" class="fas fa-trash text-danger"
-                                            onclick="event.preventDefault(); document.getElementById('form-delete').submit(); "></a>
+                                        <a href="#" title="delete" class="fas fa-trash text-danger"
+                                            onclick="deleteData({{ $brand->id }})"
+                                            ></a>
                                         
-                                        <form id="form-delete" action="{{ route('brands.destroy', ['brand'=>$brand->id]) }}" method="post">
+                                        <form id="delete-data-{{ $brand->id }}" action="{{ route('brands.destroy', ['brand'=>$brand->id]) }}" method="post" style="display="none>
                                             @method('DELETE')
                                             @csrf
                                         <form>
