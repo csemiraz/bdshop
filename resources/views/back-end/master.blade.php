@@ -21,6 +21,7 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="{{ asset('assets/back-end/') }}/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{{ asset('assets/back-end/') }}/css/atlantis.min.css">
+	
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('assets/back-end/') }}/css/demo.css">

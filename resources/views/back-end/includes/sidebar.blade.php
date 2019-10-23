@@ -94,21 +94,21 @@
             </li>
            
             <li class="nav-item">
-                <a data-toggle="collapse" href="#charts">
+                <a data-toggle="collapse" href="#supplier">
                     <i class="far fa-chart-bar"></i>
-                    <p>Charts</p>
+                    <p>Supplier</p>
                     <span class="caret"></span>
                 </a>
-                <div class="collapse" id="charts">
+                <div class="collapse" id="supplier">
                     <ul class="nav nav-collapse">
                         <li>
-                            <a href="">
-                                <span class="sub-item">Chart Js</span>
+                            <a href="{{ route('suppliers.create') }}">
+                                <span class="sub-item">Create Supplier</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <span class="sub-item">Sparkline</span>
+                            <a href="{{ route('suppliers.index') }}">
+                                <span class="sub-item">Manage Supplier</span>
                             </a>
                         </li>
                     </ul>
