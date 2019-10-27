@@ -47,7 +47,7 @@ class CategoryController extends Controller
             Image::make($image)->save($imagePath.$imageName);
         }
         else {
-            $imageName = 'category.jpg';
+            $imageName = 'default.png';
         }
         return $imageName;
     }

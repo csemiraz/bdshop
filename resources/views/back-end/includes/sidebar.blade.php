@@ -114,6 +114,29 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a data-toggle="collapse" href="#product">
+                    <i class="fas fa-database"></i>
+                    <p>Product</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="product">
+                    <ul class="nav nav-collapse">
+                        <li>
+                            <a href="{{ route('products.create') }}">
+                                <span class="sub-item">Create Product</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('products.index') }}">
+                                <span class="sub-item">Manage Product</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li class="nav-item">
                 <a href="">
                     <i class="fas fa-desktop"></i>

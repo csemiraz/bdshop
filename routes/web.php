@@ -34,6 +34,8 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'a
     Route::get('brands/unpublish/{brand}', 'BrandController@unpublish')->name('brands.unpublish');
 
     Route::resource('suppliers', 'SupplierController');
+
+    Route::resource('products', 'ProductController'); 
 });
 
 Route::group(['prefix'=>'user', 'namespace'=>'user', 'middleware'=>['auth', 'user']], function() {

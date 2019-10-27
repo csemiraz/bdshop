@@ -130,6 +130,7 @@
 		</div>
 		<!-- End Custom template -->
 	</div>
+
 	<!--   Core JS Files   -->
 	<script src="{{ asset('assets/back-end/') }}/js/core/jquery.3.2.1.min.js"></script>
 	<script src="{{ asset('assets/back-end/') }}/js/core/popper.min.js"></script>
@@ -171,6 +172,7 @@
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="{{ asset('assets/back-end/') }}/js/setting-demo.js"></script>
 	<script src="{{ asset('assets/back-end/') }}/js/demo.js"></script>
+
 
 	{{-- TinyMce  --}}
 	<script src="{{ asset('assets/tinymce/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
