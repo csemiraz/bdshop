@@ -56,10 +56,10 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Brand $brand)
     {
         //
     }
@@ -67,12 +67,12 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        $brand = Brand::find($id);
+        //$brand = Brand::find($brand);
         return view('back-end.admin.brand.edit', compact('brand'));
     }
 
@@ -80,21 +80,21 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Brand $brand)
     {
-        $brand = Brand::find($id);
+        //$brand = Brand::find($id);
         $brand->name = $request->name;
         $brand->description = $request->description;
         $brand->status = $request->status;
         $brand->save();
 
-        return redirect()->route('brands.index')->with('message', 'Brand info updated successfully');
+        return redirect()->route('brands.index')->with('message', 'Brand info updated successfully :)');
     }
 
-    public function publish ($id)
+        public function publish ($id)
     {
         $brand = Brand::find($id);
         $brand->status = 1;
@@ -115,17 +115,16 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        $brand = Brand::find($id);
+        //$brand = Brand::find($id);
         $brand->delete();
 
         Toastr::success('Brand info deleted successfully', 'Success');
         return redirect()->back();
+
     }
-
-
 }

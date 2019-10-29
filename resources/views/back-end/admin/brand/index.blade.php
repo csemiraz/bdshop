@@ -45,17 +45,17 @@ Brand: Manage-Brand
                                         <a href="{{ route('brands.unpublish', ['brand'=>$brand->id]) }}"
                                             title="Unpublish" class="fas fa-arrow-down text-warning"></a>
                                         @endif
-                                        <a href="{{ route('brands.edit', ['brand'=>$brand->id]) }}" title="edit"
+                                        <a href="{{ route('brands.edit', $brand->id) }}" title="edit"
                                             class="fas fa-edit text-secondary"></a>
 
-                                        <a href="#" title="delete" class="fas fa-trash text-danger"
-                                            onclick="deleteData({{ $brand->id }})"
-                                            ></a>
-                                        
-                                        <form id="delete-data-{{ $brand->id }}" action="{{ route('brands.destroy', ['brand'=>$brand->id]) }}" method="post" style="display="none>
-                                            @method('DELETE')
+                                        <a href="#" class="badge badge-danger" title="delete" onclick="deleteData({{ $brand->id }})">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <form id="delete-data-{{ $brand->id }}" action="{{ route('brands.destroy', $brand->id) }}"
+                                            method="POST" style="display:none">
                                             @csrf
-                                        <form>
+                                            @method('DELETE')
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
