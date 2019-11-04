@@ -61,6 +61,8 @@ class ProductController extends Controller
             'supplier_id' => 'required',
             'name' => 'required',
             'description' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
             'image' => 'image',
             'status' => 'required',
         ]);
@@ -74,29 +76,32 @@ class ProductController extends Controller
            $currentDate = Carbon::now()->toDateString();
            $imageName = $slug.'_'.$currentDate.'_'.time().'.'.$imageExtension;
            $imagePath = "assets/images/product/";
+           $imageUrl = $imagePath.$imageName;
            if(!file_exists($imagePath)) {
                mkdir($imagePath, 660, true);
            }
            Image::make($image)->resize(500, 300)->save($imagePath.$imageName);
-           return $imageName;
+           return $imageUrl;
         }
         else {
-            return 'default.png';
+            return 'assets/images/default/default.jpg';
         }
     }
     public function store(Request $request)
     {
         $product = new Product();
         $this->productValidate($request);
-        $imageName = $this->image($request);
+        $imageUrl = $this->image($request);
 
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->supplier_id = $request->supplier_id;
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
         $product->discount = $request->discount;
-        $product->image = $imageName;
+        $product->image = $imageUrl;
         $product->status = $request->status;
         $product->save();
 
@@ -159,34 +164,37 @@ class ProductController extends Controller
             $imageName = $slug.'_'.$currentDate.'_'.time().'.'.$imageExtension;
 
             $imagePath = 'assets/images/product/';
+            $imageUrl = $imagePath.$imageName;
             if(!file_exists($imagePath)) {
                 mkdir($imagePath, 666, true);
             }
             Image::make($image)->save($imagePath.$imageName);
         }
         else {
-            $imageName = $product->image;
+            $imageUrl = $product->image;
         }
-        return $imageName;
+        return $imageUrl;
     }
 
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
         $this->productValidate($request);
-        $imageName = $this->editImage($request, $id);
+        $imageUrl = $this->editImage($request, $id);
 
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->supplier_id = $request->supplier_id;
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
         $product->discount = $request->discount;
         
-        if(isset($request->image) && file_exists('assets/images/product/'.$product->image)) {
-            unlink('assets/images/product/'.$product->image);
+        if(isset($request->image) && file_exists($product->image) && $product->image!='assets/images/defult/default.jpg') {
+            unlink($product->image);
         }
-        $product->image = $imageName;
+        $product->image = $imageUrl;
         $product->status = $request->status;
         $product->save();
 
@@ -203,8 +211,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        if(file_exists('assets/images/product/'.$product->image)) {
-            unlink('assets/images/product/'.$product->image);
+        if(file_exists($product->image) && $product->image!='assets/images/default/default.jpg') {
+            unlink($product->image);
         }
         $product->delete();
 

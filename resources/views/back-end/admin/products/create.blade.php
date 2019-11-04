@@ -60,6 +60,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Price</label>
+                                <div class="col-md-10">
+                                    <input type="number" name="price" class="form-control" placeholder="Enter Price..." value="{{ old('price') }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 col-form-label">Stock</label>
+                                <div class="col-md-10">
+                                    <input type="number" name="stock" class="form-control" placeholder="Enter Stock..." value="{{ old('stock') }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md-2 col-form-label">Discount</label>
                                 <div class="col-md-10">
                                     <input type="number" name="discount" class="form-control" placeholder="Enter Discount..." value="{{ old('discount') }}">

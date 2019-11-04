@@ -21,9 +21,11 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('view_count')->default(0);
-            $table->integer('discount')->default(0);
-            $table->string('image')->default('default.png');
-            $table->tinyInteger('status');
+            $table->float('price');
+            $table->integer('stock');
+            $table->float('discount')->default(0);
+            $table->string('image')->default('default.jpg');
+            $table->tinyInteger('status'); 
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->text('description');
-            $table->string('image')->default('default.png');
+            $table->string('image')->default('default.jpg');
             $table->tinyInteger('status');
             $table->timestamps();
         });

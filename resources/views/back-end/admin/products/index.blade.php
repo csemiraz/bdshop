@@ -24,6 +24,8 @@
                                         <th>Supplier Name</th>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
                                         <th>Discount</th>
                                         <th>Image</th>
                                         <th>Status</th>
@@ -39,10 +41,12 @@
                                         <td>{{ $product->brandName }}</td>
                                         <td>{{ $product->supplierName }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{!! $product->description !!}</td>
+                                        <td>{!! Str::limit($product->description, 15) !!}</td>
+                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->stock }}</td>
                                         <td>{{ $product->discount }}</td>
                                         <td>
-                                            <img src="{{ asset('assets/images/product/'.$product->image) }}" style="width:120px; height:100px" alt="{{ $product->name }}">
+                                            <img src="{{ asset($product->image) }}" style="width:120px; height:100px" alt="{{ $product->name }}">
                                         </td>
                                         <td>
                                             @if($product->status==1)

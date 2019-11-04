@@ -19,7 +19,7 @@ Category: Manage-Category
                     Manage Category
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-md">
+                    <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" thead-light">
                                 <tr>
@@ -36,9 +36,9 @@ Category: Manage-Category
                                 <tr>
                                     <th scope="row">{{ $key+1 }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{!! $category->description !!}</td>
+                                    <td>{!! Str::limit($category->description, 15) !!}</td>
                                     <td>
-                                        <img src="{{ asset('assets/images/category/'.$category->image) }}" alt="{{ $category->name }}" style="width: 100px; height:100px">
+                                        <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" style="width: 100px; height:100px">
                                     </td>
                                     <td>{{ $category->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                     <td>

@@ -14,7 +14,7 @@
                         Manage Supplier
                     </div>
                     <div class="card-body">
-                        <div class=" table-responsive-md">
+                        <div class=" table-responsive">
                             <table class="table table-hover">
                                 <thead class=" thead-light">
                                     <tr>

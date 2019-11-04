@@ -12,7 +12,7 @@ use Intervention\Image\Facades\Image;
 class CategoryController extends Controller
 {
     public function manageCategory() {
-        $categories = Category::all();
+        $categories = Category::latest()->get();
         return view('back-end.admin.category.manage-category', [
             'categories' => $categories,
         ]);
@@ -41,25 +41,26 @@ class CategoryController extends Controller
             $imageName = $slug.'_'.$currentDate.'_'.time().'.'.$imageExtension;
 
             $imagePath = 'assets/images/category/';
+            $imageUrl = $imagePath.$slug.'_'.$currentDate.'_'.time().'.'.$imageExtension;
             if(!file_exists($imagePath)) {
                 mkdir($imagePath, 666, true);
             }
             Image::make($image)->save($imagePath.$imageName);
         }
         else {
-            $imageName = 'default.png';
+            $imageUrl = 'assets/images/default/default.jpg';
         }
-        return $imageName;
+        return $imageUrl;
     }
     public function storeCategory (Request $request)
     {
         $this->validCategory($request);
-        $imageName = $this->image($request);
+        $imageUrl = $this->image($request);
         
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
-        $category->image = $imageName;
+        $category->image = $imageUrl;
         $category->status = $request->status;
         $category->save();
 
@@ -103,15 +104,16 @@ class CategoryController extends Controller
             $imageName = $slug.'_'.$currentDate.'_'.time().'.'.$imageExtension;
 
             $imagePath = 'assets/images/category/';
+            $imageUrl = $imagePath.$imageName;
             if(!file_exists($imagePath)) {
                 mkdir($imagePath, 666, true);
             }
             Image::make($image)->save($imagePath.$imageName);
         }
         else {
-            $imageName = $category->image;
+            $imageUrl = $category->image;
         }
-        return $imageName;
+        return $imageUrl;
     }
 
     public function updateCategory (Request $request)
@@ -119,17 +121,17 @@ class CategoryController extends Controller
         $category = Category::find($request->category_id);
     
         $this->validCategory($request);
-        $imageName = $this->editImage($request);
+        $imageUrl = $this->editImage($request);
 
         $category->name = $request->name;
         $category->description = $request->description;
         /* if($category->image!=$imageName && \file_exists('assets/images/category/'.$category->image)) {
             \unlink('assets/images/category/'.$category->image);
         } */
-        if(isset($request->image) && \file_exists('assets/images/category/'.$category->image)) {
-            unlink('assets/images/category/'.$category->image);
+        if(isset($request->image) && \file_exists($category->image) && $category->image!='assets/images/default/default.jpg') {
+            unlink($category->image);
         }
-        $category->image = $imageName;
+        $category->image = $imageUrl;
         $category->status = $request->status;
         $category->save();
 
@@ -139,8 +141,8 @@ class CategoryController extends Controller
     public function deleteCategory ($id)
     {
         $category = Category::find($id);
-        if(file_exists('assets/images/category/'.$category->image)) {
-            unlink('assets/images/category/'.$category->image);
+        if(file_exists($category->image) && $category->image!='assets/images/default/default.jpg') {
+            unlink($category->image);
         }
         $category->delete();
 

@@ -19,7 +19,7 @@ Brand: Manage-Brand
                     Manage Brand
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-md">
+                    <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class=" thead-light">
                             <tr>
@@ -35,7 +35,7 @@ Brand: Manage-Brand
                                 <tr>
                                     <th scope="row">{{ $key+1 }}</th>
                                     <td>{{ $brand->name }}</td>
-                                    <td>{{ $brand->description }}</td>
+                                    <td>{{ Str::limit($brand->description, 15) }}</td>
                                     <td>{{ $brand->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                     <td>
                                         @if($brand->status == 0)

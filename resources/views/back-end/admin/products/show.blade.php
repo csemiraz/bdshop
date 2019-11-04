@@ -49,6 +49,16 @@
                             <td>{!! $product->description !!}</td>
                         </tr>
                         <tr>
+                            <th scope="row">Price</th>
+                            <td>:</td>
+                            <td>{!! $product->price !!}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Stock</th>
+                            <td>:</td>
+                            <td>{!! $product->stock !!}</td>
+                        </tr>
+                        <tr>
                             <th scope="row">Discount</th>
                             <td>:</td>
                             <td>{{ $product->discount }}%</td>
@@ -57,7 +67,7 @@
                             <th scope="row">Product Image</th>
                             <td>:</td>
                             <td>
-                                <img src="{{ asset('assets/images/product/'.$product->image) }}" style="width:120px; height:100px;" alt="">
+                                <img src="{{ asset($product->image) }}" style="width:120px; height:100px;" alt="">
                             </td>
                         </tr>
                         <tr>
