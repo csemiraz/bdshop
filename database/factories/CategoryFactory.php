@@ -9,7 +9,7 @@ $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->word,
         'description' => $faker->sentence,
-        'image' => $faker->imageUrl(300, 500),
+        'image' => $faker->imageUrl(650, 550),
         'status' => $faker->numberBetween(0,1),
     ];
 });

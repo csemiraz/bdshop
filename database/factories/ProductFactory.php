@@ -22,7 +22,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'price' => $faker->numberBetween(50, 2000),
         'stock' => $faker->randomDigit,
         'discount' => $faker->numberBetween(2, 40),
-        'image' => $faker->imageUrl(400, 500),
+        'image' => $faker->imageUrl(650, 550),
         'status' => $faker->numberBetween(0,1),
     ];
 });

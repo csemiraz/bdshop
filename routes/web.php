@@ -15,6 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'PublicController@index')->name('/');
+Route::get('product-single/{name}/{id}', 'PublicController@productSingle')->name('product-single');
 
 
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {

@@ -4,6 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2">
+                <a href="{{ route('manage-category') }}" class="btn btn-info mb-3">
+                    <i class="fas fa-backward"> Back</i>
+                </a>
                 @if(Session::has('message'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ Session::get('message') }}
