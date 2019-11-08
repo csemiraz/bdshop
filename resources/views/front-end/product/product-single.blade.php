@@ -31,19 +31,20 @@
                             <span>৳{{ (1-($productSingle->discount/100))*$productSingle->price }}</span>
                         </h3>
                         <p class="d-none d-lg-block">{!! Str::limit($productSingle->description, 150) !!}</p>
-                        <form>
+                        <form action="{{ route('cart.store') }}" method="POST">
+                            @csrf
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label class="bold d-block">Size</label>
                                     <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
                                         <label class="btn btn-outline-info active">
-                                            <input type="radio" name="size" checked> Small
+                                            <input type="radio" name="size" value="Small" checked> Small
                                         </label>
                                         <label class="btn btn-outline-info">
-                                            <input type="radio" name="size"> Medium
+                                            <input type="radio" name="size" value="Medium"> Medium
                                         </label>
                                         <label class="btn btn-outline-info">
-                                            <input type="radio" name="size"> Large
+                                            <input type="radio" name="size" value="Large"> Large
                                         </label>
                                     </div>
                                 </div>
@@ -51,15 +52,15 @@
                                     <label class="bold">Color</label>
                                     <div class="color-options justify-content-start">
                                         <label class="custom-control custom-radio custom-radio-color custom-control-inline">
-                                            <input type="radio" name="color-option1" class="custom-control-input" checked>
+                                            <input type="radio" name="color" class="custom-control-input" value="Black" checked>
                                             <span class="custom-control-label" style="background-color: #314e76"></span>
                                         </label>
                                         <label class="custom-control custom-radio custom-radio-color custom-control-inline">
-                                            <input type="radio" name="color-option1" class="custom-control-input">
+                                            <input type="radio" name="color" class="custom-control-input" value="Orange">
                                             <span class="custom-control-label" style="background-color: #fcab28"></span>
                                         </label>
                                         <label class="custom-control custom-radio custom-radio-color custom-control-inline">
-                                            <input type="radio" name="color-option1" class="custom-control-input">
+                                            <input type="radio" name="color" class="custom-control-input" value="Red">
                                             <span class="custom-control-label" style="background-color: #db4524"></span>
                                         </label>
                                     </div>
@@ -71,13 +72,14 @@
                                     <div class="w-100 spinner">
                                         <button type="button" class="btn btn-icon rounded-circle"><i
                                                 data-feather="minus"></i></button>
-                                        <input type="number" class="form-control" value="1" min="1" max="999">
+                                        <input name="quantity" type="number" class="form-control" value="1" min="1" max="999">
+                                        <input type="hidden" name="product_id" class="form-control" value="{{ $productSingle->id }}">
                                         <button type="button" class="btn btn-icon rounded-circle"><i
                                                 data-feather="plus"></i></button>
                                     </div>
                                 </div>
                                 <div class="form-group col-6 d-flex align-items-end">
-                                    <button type="button" class="btn btn-primary btn-block rounded-pill atc-demo">Add to
+                                    <button type="submit" class="btn btn-primary btn-block rounded-pill">Add to
                                         Cart</button>
                                 </div>
                             </div>

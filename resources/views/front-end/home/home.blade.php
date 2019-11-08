@@ -161,7 +161,11 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-sm rounded-pill btn-outline-primary btn-block atc-demo">Add to Cart</button>
+                <form action="{{ route('cart.store') }}" method="POST">
+                    @csrf
+                    <input name="product_id" type="hidden" value="{{ $product->id }}">
+                    <button class="btn btn-sm rounded-pill btn-outline-primary btn-block">Add to Cart</button>
+                </form>
             </div>
         </div>
         @endforeach

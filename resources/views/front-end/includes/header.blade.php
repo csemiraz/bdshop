@@ -170,6 +170,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
 
+                  
                     <div class="media">
                         <a href="shop-single.html"><img src="{{ asset('assets/front-end/') }}/img/products/1_small.jpg"
                                 width="50" height="50" alt="Hanes Hooded Sweatshirt"></a>
@@ -180,41 +181,8 @@
                                     data-feather="x-circle"></i></button>
                         </div>
                     </div>
+                   
 
-                    <div class="media">
-                        <a href="shop-single.html"><img src="{{ asset('assets/front-end/') }}/img/products/2_small.jpg"
-                                width="50" height="50" alt="The Flash Logo T-Shirt"></a>
-                        <div class="media-body">
-                            <a href="shop-single.html" title="The Flash Logo T-Shirt">The Flash Logo T-Shirt</a>
-                            <span class="qty">1</span> x <span class="price">$16.64</span>
-                            <button type="button" class="close" aria-label="Close"><i
-                                    data-feather="x-circle"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="media">
-                        <a href="shop-single.html"><img src="{{ asset('assets/front-end/') }}/img/products/3_small.jpg"
-                                width="50" height="50" alt="Open Front Cropped Cardigans"></a>
-                        <div class="media-body">
-                            <a href="shop-single.html" title="Open Front Cropped Cardigans">Open Front Cropped
-                                Cardigans</a>
-                            <span class="qty">1</span> x <span class="price">$15.20</span>
-                            <button type="button" class="close" aria-label="Close"><i
-                                    data-feather="x-circle"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="media">
-                        <a href="shop-single.html"><img src="{{ asset('assets/front-end/') }}/img/products/4_small.jpg"
-                                width="50" height="50" alt="Cotton Fleece Long Hoodie"></a>
-                        <div class="media-body">
-                            <a href="shop-single.html" title="Cotton Fleece Long Hoodie">Cotton Fleece Long
-                                Hoodie</a>
-                            <span class="qty">1</span> x <span class="price">$85.00</span>
-                            <button type="button" class="close" aria-label="Close"><i
-                                    data-feather="x-circle"></i></button>
-                        </div>
-                    </div>
 
                     <div class="d-flex justify-content-between pb-3 pt-2">
                         <span>Total</span>
@@ -222,7 +190,7 @@
                     </div>
                     <div class="d-flex justify-content-between pb-2">
                         <div class="w-100 mr-1">
-                            <a href="cart.html" class="btn btn-block rounded-pill btn-secondary">View Cart</a>
+                            <a href="{{  route('cart.index') }}" class="btn btn-block rounded-pill btn-secondary">View Cart</a>
                         </div>
                         <div class="w-100 ml-1">
                             <a href="shipping.html" class="btn btn-block rounded-pill btn-primary">Checkout</a>

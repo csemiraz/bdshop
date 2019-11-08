@@ -26,6 +26,9 @@
     <!-- Mimity CSS  -->
     <link rel="stylesheet" href="{{ asset('assets/front-end/') }}/dist/css/style.min.css">
 
+    {{-- Toastr Notication --}}
+    <link rel="stylesheet" href="{{ asset('assets/toastr/toastr.min.css') }}">
+
     <title>@yield('title')</title>
 </head>
 
@@ -132,6 +135,34 @@
     <!-- Mimity JS  -->
     <script src="{{ asset('assets/front-end/') }}/dist/js/script.min.js"></script>
 
+    {{-- Toastr Notification --}}
+      <script src="{{ asset('assets/toastr/toastr.min.js') }}"></script>
+      {!! Toastr::message() !!}
+      
+      <script>
+        @if($errors->any())
+      			@foreach($errors->all() as $error)
+      				toastr.error('{{ $error }}', 'Error', {
+      					"closeButton": true,
+      					"debug": false,
+      					"newestOnTop": false,
+      					"progressBar": true,
+      					"positionClass": "toast-top-right",
+      					"preventDuplicates": false,
+      					"onclick": null,
+      					"showDuration": "300",
+      					"hideDuration": "1000",
+      					"timeOut": "5000",
+      					"extendedTimeOut": "1000",
+      					"showEasing": "swing",
+      					"hideEasing": "linear",
+      					"showMethod": "fadeIn",
+      					"hideMethod": "fadeOut"
+      				})
+      			@endforeach
+      		@endif
+      </script>
+
     <script>
         $(function () {
 
@@ -155,8 +186,6 @@
             $(function () {
         
               App.rating()
-              App.atcDemo()
-              App.atwDemo()
               App.colorOption()
         
               setTimeout(function (argument) {

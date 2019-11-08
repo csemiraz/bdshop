@@ -16,6 +16,11 @@ Auth::routes();
 
 Route::get('/', 'PublicController@index')->name('/');
 Route::get('product-single/{name}/{id}', 'PublicController@productSingle')->name('product-single');
+//Cart
+Route::post('cart/store', 'CartController@store')->name('cart.store');
+Route::get('cart', 'CartController@index')->name('cart.index');
+Route::post('cart/{id}', 'CartController@update')->name('cart.update');
+Route::get('cart/{id}', 'CartController@destroy')->name('cart.destroy');
 
 
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {

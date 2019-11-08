@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use Cart;
 
 class PublicController extends Controller
 {
     public function index() {
         $categories = Category::where('status', 1)->take(4)->get();
         $products = Product::where('status', 1)->paginate(8);
+
         return view('front-end.home.home', [
             'categories' => $categories,
             'products' => $products,
