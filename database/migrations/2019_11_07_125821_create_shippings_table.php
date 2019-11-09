@@ -15,9 +15,9 @@ class CreateShippingsTable extends Migration
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('full_name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email');
-            $table->string('password');
             $table->string('phone');
             $table->text('address');
             $table->timestamps();

@@ -170,7 +170,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
 
-                  
+                 
                     <div class="media">
                         <a href="shop-single.html"><img src="{{ asset('assets/front-end/') }}/img/products/1_small.jpg"
                                 width="50" height="50" alt="Hanes Hooded Sweatshirt"></a>
@@ -181,19 +181,19 @@
                                     data-feather="x-circle"></i></button>
                         </div>
                     </div>
-                   
+               
 
 
                     <div class="d-flex justify-content-between pb-3 pt-2">
                         <span>Total</span>
-                        <strong>$135.40</strong>
+                        <strong>৳{{ Session::get('orderTotal') }}</strong>
                     </div>
                     <div class="d-flex justify-content-between pb-2">
                         <div class="w-100 mr-1">
                             <a href="{{  route('cart.index') }}" class="btn btn-block rounded-pill btn-secondary">View Cart</a>
                         </div>
                         <div class="w-100 ml-1">
-                            <a href="shipping.html" class="btn btn-block rounded-pill btn-primary">Checkout</a>
+                            <a href="{{  route('checkout.index') }}" class="btn btn-block rounded-pill btn-primary">Checkout</a>
                         </div>
                     </div>
                 </div>

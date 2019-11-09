@@ -12,13 +12,19 @@
                         <a class="nav-link disabled" href="javascript:void(0)"><i data-feather="arrow-right"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shipping.html">SHIPPING</a>
+                        <a class="nav-link" href="{{ route('checkout.index') }}">CHECKOUT</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="javascript:void(0)"><i data-feather="arrow-right"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="payment.html">PAYMENT</a>
+                        <a class="nav-link" href="{{ route('checkout.shipping') }}">SHIPPING</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="javascript:void(0)"><i data-feather="arrow-right"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('checkout.payment') }}">PAYMENT</a>
                     </li>
                 </ul>
             </div>
@@ -81,9 +87,12 @@
                 </table>
                 <div class="text-center">
                     <small class="counter">SUBTOTAL</small>
-                    <h3 class="roboto-condensed bold">{{ Cart::getSubTotal() }}</h3>
+                    <h3 class="roboto-condensed bold">৳{{ Cart::getSubTotal() }}</h3>
+
+                    <?php Session::put('orderTotal', Cart::getSubTotal()); ?>
+
                     <a href="{{ route('/') }}" class="btn btn-primary rounded-pill btn-lg"><i data-feather="arrow-left"></i> Continue Shopping</a>
-                    <a href="{{ route('/') }}" class="btn btn-primary rounded-pill btn-lg">Shipping <i
+                    <a href="{{ route('checkout.index') }}" class="btn btn-primary rounded-pill btn-lg">Checkout <i
                             data-feather="arrow-right"></i></a>
                 </div>
             </div>

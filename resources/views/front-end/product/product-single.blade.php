@@ -84,6 +84,7 @@
                                 </div>
                             </div>
                         </form>
+                        
                         <hr>
                         <div class="d-flex align-items-center">
                             <span class="text-muted">Share</span>

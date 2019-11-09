@@ -16,11 +16,22 @@ Auth::routes();
 
 Route::get('/', 'PublicController@index')->name('/');
 Route::get('product-single/{name}/{id}', 'PublicController@productSingle')->name('product-single');
-//Cart
+
+// Cart Route
 Route::post('cart/store', 'CartController@store')->name('cart.store');
 Route::get('cart', 'CartController@index')->name('cart.index');
 Route::post('cart/{id}', 'CartController@update')->name('cart.update');
 Route::get('cart/{id}', 'CartController@destroy')->name('cart.destroy');
+
+// Checkout Routes
+Route::get('checkout', 'CheckoutController@index')->name('checkout.index');
+Route::post('checkout/register', 'CheckoutController@register')->name('checkout.register');
+Route::post('checkout/login', 'CheckoutController@login')->name('checkout.login');
+Route::get('checkout/shipping', 'CheckoutController@shipping')->name('checkout.shipping');
+Route::post('checkout/shipping/store', 'CheckoutController@shippingStore')->name('checkout.shipping.store');
+Route::get('checkout/payment', 'CheckoutController@payment')->name('checkout.payment');
+Route::post('checkout/order', 'CheckoutController@order')->name('checkout.order');
+Route::get('checkout/confirm', 'CheckoutController@confirm')->name('checkout.confirm');
 
 
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {
