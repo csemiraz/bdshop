@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cart;
 use App\Brand;
+use App\Review;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
@@ -22,9 +23,10 @@ class PublicController extends Controller
 
     public function productSingle($name, $id)
     {
+        $reviews = Review::latest()->where('product_id', $id)->paginate(5);
         $productSingle = Product::find($id);
         $productRelated = Product::where('category_id', $productSingle->category_id)->whereNotIn('id', [$productSingle->id])->paginate(4);
-        return view('front-end.product.product-single', compact('productSingle', 'productRelated'));
+        return view('front-end.product.product-single', compact('productSingle', 'productRelated', 'reviews'));
     }
 
 

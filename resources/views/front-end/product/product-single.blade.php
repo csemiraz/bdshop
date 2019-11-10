@@ -106,7 +106,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="reviews" data-toggle="tab" href="#review-content" role="tab"
-                            aria-controls="review-content" aria-selected="false">REVIEWS (2)</a>
+                            aria-controls="review-content" aria-selected="false">REVIEWS ({{ $productSingle->reviews()->count() }})</a>
                     </li>
                 </ul>
             </div>
@@ -119,7 +119,7 @@
                     <div class="row gutters-3 justify-content-center">
                         <div class="col-11 col-sm-6 col-md-4 col-lg-3">
                             <h5 class="bold roboto-condensed rating">
-                                OVERALL RATING: 4.5
+                                OVERALL RATING: {{ $reviews->count()!=0 ? round($reviews->sum('rating')/$reviews->count(), 2) : 'No Review Yet ' }}
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                     viewBox="0 0 32 32">
                                     <title>star-full</title>
@@ -131,64 +131,57 @@
                             <div class="list-group">
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span
-                                        class="rating" data-value="5"></span> <span>1 review <i
+                                        class="rating" data-value="5"></span> <span>5 review <i
                                             data-feather="chevron-right"></i></span></a>
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span
-                                        class="rating" data-value="4"></span> <span>1 review <i
+                                        class="rating" data-value="4"></span> <span>4 review <i
                                             data-feather="chevron-right"></i></span></a>
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span
-                                        class="rating" data-value="3"></span> <span>0 review <i
+                                        class="rating" data-value="3"></span> <span>3 review <i
                                             data-feather="chevron-right"></i></span></a>
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span
-                                        class="rating" data-value="2"></span> <span>0 review <i
+                                        class="rating" data-value="2"></span> <span>2 review <i
                                             data-feather="chevron-right"></i></span></a>
                                 <a href="javascript:void(0)"
                                     class="list-group-item list-group-item-action text-muted d-flex justify-content-between"><span
-                                        class="rating" data-value="1"></span> <span>0 review <i
+                                        class="rating" data-value="1"></span> <span>1 review <i
                                             data-feather="chevron-right"></i></span></a>
                             </div>
                             <div class="text-center mt-1">
+                                @if(Session::get('customerId'))
                                 <button class="btn btn-primary btn-block rounded-pill" data-toggle="modal"
                                     data-target="#reviewModal">Write a review</button>
+                                @else
+                                <button class="btn btn-primary btn-block rounded-pill" 
+                                    onclick="toastr.info('You have to login or registered first to review', 'info', {
+                                        closeButton: true,
+                                        progressBar: true,
+                                    })"
+                                >Write a review</button>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-8 col-lg-9 mt-5 mt-md-0">
+                            @foreach($reviews as $review)
                             <div class="media">
-                                <a href="javascript:void(0)"><img src="../img/user/user1.svg" alt="User" width="45"
+                                <a href="javascript:void(0)"><img src="{{ asset('assets/images/default/user.png') }}" alt="User" width="45"
                                         height="45" class="rounded-circle"></a>
-                                <div class="media-body ml-2 ml-sm-3">
-                                    <h6 class="bold">Terrific Shirt, Exactly What I Wanted.</h6>
+                                <div class="media-body ml-2 ml-sm-3"> 
                                     <p class="d-flex flex-wrap">
-                                        <span class="rating mr-2" data-value="5"></span>
-                                        <a href="javascript:void(0)" class="mr-2">Alan Lewis</a>
-                                        <span class="text-muted">3 days ago</span>
+                                        <span class="rating mr-2" data-value="{{ $review->rating }}"></span>
+                                        <a href="javascript:void(0)" class="mr-2">{{ $review->customer->first_name.' '.$review->customer->last_name }}</a>
+                                        <span class="text-muted">{{ $review->created_at->diffForHumans() }}</span>
                                     </p>
-                                    <p>The Hanes sweatshirt was precisely what I wanted except for the color which is better
-                                        than what I thought I was getting. This order went perfectly, so much so that
-                                        another two are being shipped to me right now. It is way too early to say anything
-                                        about durability; but otherwise, there is no way this order could have gone any
-                                        better than it did. If you are interested in a pretty traditional long-sleeve
-                                        sweatshirt, you would do well to give this one serious consideration.</p>
+                                    <p>{!! $review->review !!}</p>
                                     <hr>
                                 </div>
                             </div>
-                            <div class="media">
-                                <a href="javascript:void(0)"><img src="../img/user/user2.svg" alt="User" width="45"
-                                        height="45" class="rounded-circle"></a>
-                                <div class="media-body ml-2 ml-sm-3">
-                                    <h6 class="bold">Very comfortable.</h6>
-                                    <p class="d-flex flex-wrap">
-                                        <span class="rating mr-2" data-value="4"></span>
-                                        <a href="javascript:void(0)" class="mr-2">Amy</a>
-                                        <span class="text-muted">5 days ago</span>
-                                    </p>
-                                    <p>Fits slightly larger than expected, but gets longer, not just wider. (For reference,
-                                        I am female, 5'8'', 170lbs, and this sweatshirt fits around my 36J chest with room
-                                        to spare, coming to rest at about crotch level)</p>
-                                </div>
+                            @endforeach
+                            <div>
+                                {{ $reviews->links() }}
                             </div>
                         </div>
                     </div>
@@ -224,6 +217,52 @@
             @endforeach
         </div>
         <!-- /Related Products -->
-    
     </div>
+
+    <!-- Add review modal -->
+  
+    <div class="modal fade" tabindex="-1" role="dialog" id="reviewModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-light">
+                <div class="modal-header">
+                    <h5 class="modal-title">Write a review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form action="{{ route('customer.review') }}" method="POST" class="form-style-1">
+                        @csrf
+                        <div class="form-group">
+                            <input name="product_id" type="hidden" value="{{ $productSingle->id }}" class="form-control bg-white" id="reviewName">
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewRating">Rating</label>
+                            <select name="rating" class="form-control bg-white custom-select" id="reviewRating">
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="1">1 Star</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reviewText">Review</label>
+                            <textarea name="review" class="form-control bg-white" id="reviewText" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn rounded-pill btn-primary">Submit review</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn rounded-pill btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- /Add review modal -->
 @endsection

@@ -38,6 +38,9 @@ Route::post('checkout/order', 'CheckoutController@order')->name('checkout.order'
 Route::get('checkout/confirm', 'CheckoutController@confirm')->name('checkout.confirm');
 Route::get('checkout/logout', 'CheckoutController@logout')->name('checkout.logout');
 
+//Customer Review Route
+Route::post('customer/review', 'ReviewController@review')->name('customer.review');
+
 //Admin Route
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
