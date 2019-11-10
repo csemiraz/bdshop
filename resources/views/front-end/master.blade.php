@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="{{ asset('assets/front-end/') }}/plugins/photoswipe/photoswipe.min.css">
     <link rel="stylesheet" href="{{ asset('assets/front-end/') }}/plugins/photoswipe/photoswipe-default-skin/default-skin.min.css">
 
+    <link rel="stylesheet" href="{{ asset('assets/front-end/') }}/plugins/nouislider/nouislider.min.css">
+
     <!-- Mimity CSS  -->
     <link rel="stylesheet" href="{{ asset('assets/front-end/') }}/dist/css/style.min.css">
 
@@ -127,6 +129,8 @@
     <script src="{{ asset('assets/front-end/') }}/plugins/noty/noty.min.js"></script>
     <script src="{{ asset('assets/front-end/') }}/plugins/jquery-countdown/jquery.countdown.min.js"></script>
 
+    <script src="{{ asset('assets/front-end/') }}/plugins/nouislider/nouislider.min.js"></script>
+
     <!-- PLUGINS FOR Sinlgle Product PAGE -->
     <script src="{{ asset('assets/front-end/') }}/plugins/photoswipe/photoswipe.min.js"></script>
     <script src="{{ asset('assets/front-end/') }}/plugins/photoswipe/photoswipe-ui-default.min.js"></script>
@@ -184,10 +188,7 @@
 
     <script>
             $(function () {
-        
-              App.rating()
-              App.colorOption()
-        
+
               setTimeout(function (argument) {
                 var productSlider = new Swiper('#product-slider', {
                   loop: true,
@@ -228,6 +229,101 @@
         
             })
         </script>
+
+        <script>
+            $(function () {
+          
+                App.rating()
+                App.quickviewDemo()
+          
+                var filter = {
+                  categories: function () {
+                    $('.list-tree').metisMenu()
+                  },
+                  price: function () {
+                    var priceSlider = document.getElementById('price-slider')
+                    noUiSlider.create(priceSlider, {
+                      start: [25, 75],
+                      connect: true,
+                      range: {
+                        'min': 0,
+                        'max': 100
+                      }
+                    })
+                    var prefix = '$'
+                    var priceSliderValues = [
+                      document.getElementById('price-slider-min'),
+                      document.getElementById('price-slider-max')
+                    ]
+                    priceSlider.noUiSlider.on('update', function (values, handle) {
+                      priceSliderValues[handle].value = prefix + values[handle]
+                    })
+                    priceSliderValues[0].addEventListener('change', function () {
+                      priceSlider.noUiSlider.set([this.value.replace(prefix, ''), null])
+                    })
+                    priceSliderValues[1].addEventListener('change', function () {
+                      priceSlider.noUiSlider.set([null, this.value.replace(prefix, '')])
+                    })
+                  },
+                  brands: function () {
+                    var psBrands = new PerfectScrollbar('.brands-list', { wheelPropagation: false })
+                    $('#search-brands').on('keyup', function () {
+                      var value = $(this).val().toLowerCase()
+                      $('.brands-list .custom-control').filter(function () {
+                        $(this).toggle($(this).find('label').contents().not($(this).find('label').children()).text().toLowerCase().indexOf(value) > -1)
+                      })
+                      psBrands.update()
+                    })
+                  }
+                }
+          
+                setTimeout(function () {
+                  filter.price()
+                  filter.brands()
+                  filter.categories()
+          
+                  // quickview
+                  var quickviewSlider = new Swiper('#quickview-slider', {
+                    loop: true,
+                    pagination: {
+                      el: '.swiper-pagination',
+                      clickable: true
+                    },
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    }
+                  })
+                  $('#quickviewModal').on('shown.bs.modal', function () {
+                    quickviewSlider.update()
+                  })
+                }, 100)
+          
+                var sidebarContent = $('.accordion-sidebar').html()
+                $('#filterModal').on('show.bs.modal', function () {
+                  // move filter contents to modal body
+                  $(this).find('.modal-body').html('<div class="accordion accordion-caret accordion-sidebar accordion-modal">'+sidebarContent+'</div>')
+                  // empty the sidebar filter contents
+                  $('.accordion-sidebar:not(.accordion-modal)').html('')
+                  // run filters
+                  filter.categories()
+                  filter.price()
+                })
+                $('#filterModal').on('shown.bs.modal', function () {
+                  // PerfectScrollbar need to wait until all content appears to work, so we use 'shown.bs.modal' event
+                  filter.brands()
+                })
+                $('#filterModal').on('hidden.bs.modal', function () {
+                  $('.accordion-modal').remove() // remove modal filter contents
+                  $('.accordion-sidebar').html(sidebarContent) // move filter contents back to the sidebar
+                  // run filters
+                  filter.categories()
+                  filter.price()
+                  filter.brands()
+                })
+          
+              })
+          </script>
 
 </body>
 

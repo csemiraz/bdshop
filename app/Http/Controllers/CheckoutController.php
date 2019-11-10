@@ -183,4 +183,13 @@ class CheckoutController extends Controller
             return redirect()->route('/');
         }
     }
+
+    public function logout()
+    {
+        Session::flush();
+        Toastr::success(':) Logout successfully', 'Success');
+        return redirect()->route('/');
+    }
+
+
 }

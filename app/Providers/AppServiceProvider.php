@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Category;
+use App\Brand;
 
 
 
@@ -27,5 +29,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength('191');
+        $categories = Category::where('status', 1)->get();
+        $brands = Brand::where('status', 1)->get();
+        view()->share([
+            'categories' => $categories,
+            'brands' => $brands,
+        ]);
     }
 }

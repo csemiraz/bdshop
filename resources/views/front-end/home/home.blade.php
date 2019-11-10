@@ -5,143 +5,57 @@
 <!-- Home slider -->
 @include('front-end.includes.home-slider')
 <!-- /Home slider -->
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="bold text-center mt-gutter">Categories</h4>
+        </div>
+    </div>
+</div>
 <div class="container mt-3">
 
-    <!-- Top Categories 2 -->
+    <!-- Top Categories -->
     <div class="row gutters-3 mt-3">
-        @foreach($categories as $category)
-            <div class="col-6 mb-3">
+        @foreach($homeCategories as $homeCategory)
+            <div class="col-md-3 col-6 mb-3">
                 <div class="card card-2col text-white zoom-hover">
-                    <img class="card-img" src="{{ asset($category->image) }}" alt="Card image">
+                    <img class="card-img" src="{{ asset($homeCategory->image) }}" alt="Card image">
                     <div class="card-img-overlay card-img-overlay-transparent flex-center flex-column">
-                        <h2 class="card-title">{{ $category->name }}</h2>
-                        <p class="text-center d-none d-lg-block">{!! $category->description !!}</p>
-                        <a href="" class="btn btn-warning rounded-pill" data-addclass-on-xs="btn-sm">Shop
+                        <h2 class="card-title">{{ $homeCategory->name }}</h2>
+                        <p class="text-center d-none d-lg-block">{!! $homeCategory->description !!}</p>
+                        <a href="{{ route('product.category', ['name'=>$homeCategory->name]) }}" class="btn btn-warning rounded-pill" data-addclass-on-xs="btn-sm">Shop
                             Now</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-    <!-- /Top Categories 2 -->
+    <!-- /Top Categories -->
 
     <div class="text-center mt-3">
-        <a href="" class="btn btn-light border rounded-pill bold text-muted">ALL CATEGORIES</a>
+        <a href="{{ route('category.allCategory') }}" class="btn btn-light border rounded-pill bold text-muted">ALL CATEGORIES</a>
     </div>
 
-    <!-- Flash deals -->
-    <div class="row mt-gutter">
-        <div class="col">
-            <div class="card">
+   <!-- /All Brands -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mt-3">
+                <div class="card-header bg-white border-bottom bold roboto-condensed">
+                    <h5 class="bold mb-0">POPULAR <span class="text-primary">BRANDS</span></h5>
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title roboto-condensed bold"><i data-feather="zap" class="align-top"></i> FLASH
-                        DEALS: <span class="text-danger" id="flash-deals-countdown">countdown</span></h5>
-                    <div class="swiper-container" id="deals-slider">
-                        <div class="swiper-wrapper">
-
-                            <div class="swiper-slide">
-                                <div class="card card-2col shadow-none">
-                                    <div class="d-flex flex-column-reverse flex-md-row">
-                                        <div class="card-2col-body">
-                                            <a href="shop-single.html" class="h3 card-title">Legendary Whitetails
-                                                Heavyweight Hoodie</a>
-                                            <p class="price text-center">
-                                                <span class="h4">$44.99</span>
-                                                <span class="h5 del">$59.99</span>
-                                            </p>
-                                            <button type="button" class="btn btn-primary rounded-pill atc-demo"><i
-                                                    data-feather="shopping-cart"></i> Add to Cart</button>
-                                        </div>
-                                        <div class="card-2col-img">
-                                            <a href="shop-single.html"
-                                                data-cover="{{ asset('assets/front-end/') }}/img/products/flash_deals_1.jpg"
-                                                data-xs-height="250px" data-sm-height="200px" data-md-height="175px"
-                                                data-lg-height="225px" data-xl-height="250px"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card card-2col shadow-none">
-                                    <div class="d-flex flex-column-reverse flex-md-row">
-                                        <div class="card-2col-body">
-                                            <a href="shop-single.html" class="h3 card-title">Casual Floral Print 3/4
-                                                Sleeve Shirt</a>
-                                            <p class="price text-center">
-                                                <span class="h4">$18.69</span>
-                                                <span class="h5 del">$21.99</span>
-                                            </p>
-                                            <a href="#" class="btn btn-primary rounded-pill atc-demo"><i
-                                                    data-feather="shopping-cart"></i> Add to Cart</a>
-                                        </div>
-                                        <div class="card-2col-img">
-                                            <a href="shop-single.html"
-                                                data-cover="{{ asset('assets/front-end/') }}/img/products/flash_deals_2.jpg"
-                                                data-xs-height="250px" data-sm-height="200px" data-md-height="175px"
-                                                data-lg-height="225px" data-xl-height="250px"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card card-2col shadow-none">
-                                    <div class="d-flex flex-column-reverse flex-md-row">
-                                        <div class="card-2col-body">
-                                            <a href="shop-single.html" class="h3 card-title">Legendary Whitetails
-                                                Heavyweight Hoodie</a>
-                                            <p class="price text-center">
-                                                <span class="h4">$44.99</span>
-                                                <span class="h5 del">$59.99</span>
-                                            </p>
-                                            <button type="button" class="btn btn-primary rounded-pill atc-demo"><i
-                                                    data-feather="shopping-cart"></i> Add to Cart</button>
-                                        </div>
-                                        <div class="card-2col-img">
-                                            <a href="shop-single.html"
-                                                data-cover="{{ asset('assets/front-end/') }}/img/products/flash_deals_1.jpg"
-                                                data-xs-height="250px" data-sm-height="200px" data-md-height="175px"
-                                                data-lg-height="225px" data-xl-height="250px"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="card card-2col shadow-none">
-                                    <div class="d-flex flex-column-reverse flex-md-row">
-                                        <div class="card-2col-body">
-                                            <a href="shop-single.html" class="h3 card-title">Casual Floral Print 3/4
-                                                Sleeve Shirt</a>
-                                            <p class="price text-center">
-                                                <span class="h4">$18.69</span>
-                                                <span class="h5 del">$21.99</span>
-                                            </p>
-                                            <a href="#" class="btn btn-primary rounded-pill atc-demo"><i
-                                                    data-feather="shopping-cart"></i> Add to Cart</a>
-                                        </div>
-                                        <div class="card-2col-img">
-                                            <a href="shop-single.html"
-                                                data-cover="{{ asset('assets/front-end/') }}/img/products/flash_deals_2.jpg"
-                                                data-xs-height="250px" data-sm-height="200px" data-md-height="175px"
-                                                data-lg-height="225px" data-xl-height="250px"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="swiper-button-prev left-0"><i data-feather="chevron-left"></i></div>
-                        <div class="swiper-button-next right-0"><i data-feather="chevron-right"></i></div>
+                    <div class="btn-group-scatter">
+                        @foreach($brands as $brand)
+                        <a href="{{ route('product.brand', ['name'=>$brand->name]) }}" class="btn btn-light rounded-pill">{{  $brand->name }} <span class="text-primary"> ({{ $brand->products()->count() }})</span></a>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Flash deals -->
+    <!-- /All Brands -->
 
+   
     <h4 class="bold text-center mt-gutter">Products</h4>
 
     <!-- Featured Products -->
@@ -180,4 +94,5 @@
     </div>
     <!-- / Products Pagination-->
 </div>
+
 @endsection

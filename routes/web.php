@@ -11,11 +11,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Special auth route
 Auth::routes();
 
+//Public route
 Route::get('/', 'PublicController@index')->name('/');
 Route::get('product-single/{name}/{id}', 'PublicController@productSingle')->name('product-single');
+Route::get('categories', 'PublicController@allCategory')->name('category.allCategory');
+Route::get('product/category/{name}', 'PublicController@productCategory')->name('product.category');
+Route::get('product/brand/{name}', 'PublicController@productBrand')->name('product.brand');
 
 // Cart Route
 Route::post('cart/store', 'CartController@store')->name('cart.store');
@@ -32,8 +36,9 @@ Route::post('checkout/shipping/store', 'CheckoutController@shippingStore')->name
 Route::get('checkout/payment', 'CheckoutController@payment')->name('checkout.payment');
 Route::post('checkout/order', 'CheckoutController@order')->name('checkout.order');
 Route::get('checkout/confirm', 'CheckoutController@confirm')->name('checkout.confirm');
+Route::get('checkout/logout', 'CheckoutController@logout')->name('checkout.logout');
 
-
+//Admin Route
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
