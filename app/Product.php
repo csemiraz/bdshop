@@ -24,4 +24,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Supplier');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
 }
