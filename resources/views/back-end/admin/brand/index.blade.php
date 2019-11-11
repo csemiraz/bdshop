@@ -14,6 +14,9 @@ Brand: Manage-Brand
             <div class="mb-3">
                 <a class="btn btn-primary" href="{{ route('brands.create') }}">Add Brand</a>
             </div>
+            <div>
+                <button type="button" class="badge badge-secondary mb-3">Total Brands: {{ $brands->count() }}</button>
+            </div>
             <div class=" card">
                 <div class="card-header text-center">
                     Manage Brand

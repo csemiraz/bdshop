@@ -1,5 +1,5 @@
 @extends('front-end.master')
-@section('title', 'BDshop: Home')
+@section('title', 'BdShop: Home')
 @section('main-content')
 
 <!-- Home slider -->

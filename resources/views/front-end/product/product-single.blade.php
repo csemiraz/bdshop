@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-md-6 mt-3 mt-md-0">
                         <h3 class="card-title">{{  $productSingle->name }}</h3>
-                        <h6><span class="rating" data-value="4.5"></span> <a href="javascript:void(0)">2 reviews</a></h6>
+                        <h6><span class="rating" data-value="{{ $reviews->count()!=0 ? $reviews->sum('rating')/$reviews->count() : 0 }}"></span> <a href="javascript:void(0)">{{ $reviews->count() }} reviews</a></h6>
                         <h3 class="price">
                             <span class="del">৳{{  $productSingle->price }}</span>
                             <span>৳{{ (1-($productSingle->discount/100))*$productSingle->price }}</span>

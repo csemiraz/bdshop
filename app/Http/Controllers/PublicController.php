@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class PublicController extends Controller
 {
     public function index() {
-        $homeCategories = Category::where('status', 1)->take(4)->get();
-        $products = Product::where('status', 1)->paginate(8);
+        $homeCategories = Category::latest()->where('status', 1)->take(4)->get();
+        $products = Product::latest()->where('status', 1)->paginate(8);
 
         return view('front-end.home.home', [
             'homeCategories' => $homeCategories,
@@ -32,7 +32,7 @@ class PublicController extends Controller
 
     public function allCategory()
     {
-        $allCategories = Category::where('status', 1)->paginate(8);
+        $allCategories = Category::latest()->where('status', 1)->paginate(8);
         return view('front-end.category.allCategory', compact('allCategories'));
     }
 

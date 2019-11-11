@@ -14,4 +14,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\Review');
     }
+
+    public function wishListProducts ()
+    {
+    	return $this->belongsToMany('App\Product')->withTimeStamps();
+    }
 }

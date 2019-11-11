@@ -14,6 +14,9 @@ Category: Manage-Category
             <div class="mb-3">
                 <a class="btn btn-primary" href="{{ route('add-category') }}">Add Category</a>
             </div>
+            <div>
+                <button type="button" class="badge badge-secondary mb-3">Total Categories: {{ $categories->count() }}</button>
+            </div>
             <div class=" card">
                 <div class="card-header text-center">
                     Manage Category

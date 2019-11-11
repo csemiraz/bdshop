@@ -9,6 +9,9 @@
                 <a href="{{ route('suppliers.create') }}" class="btn btn-info mb-3">
                     <i class="fas fa-plus"> Create</i>
                 </a>
+                <div>
+                <button type="button" class="badge badge-secondary mb-3">Total Suppliers: {{ $suppliers->count() }}</button>
+                </div>
                 <div class="card">
                     <div class="card-header text-center text-info" style="font-size:20px">
                         Manage Supplier
