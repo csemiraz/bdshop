@@ -18,7 +18,7 @@
                     </p>
                     <p>A confirmation email has been sent to <u>user@example.com</u></p>
                     <a href="{{ route('/') }}" class="btn btn-secondary rounded mb-3">CONTINUE SHOPPING</a>
-                    <a href="" class="btn btn-primary rounded mb-3">VIEW ORDER</a>
+                    <a href="{{ route('customer.order') }}" class="btn btn-primary rounded mb-3">VIEW ORDER</a>
                 </div>
             </div>
         </div>

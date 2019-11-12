@@ -40,14 +40,14 @@
                             <div class="small counter">1113 points</div>
                         </div>
                     </div>
-                    <a href="account-orders.html" class="dropdown-item has-icon"><i data-feather="shopping-cart"></i>My
+                    <a href="{{ route('customer.order') }}" class="dropdown-item has-icon"><i data-feather="shopping-cart"></i>My
                         Orders</a>
-                    <a href="account-wishlist.html" class="dropdown-item has-icon has-badge"><i
+                    <a href="" class="dropdown-item has-icon has-badge"><i
                             data-feather="heart"></i>Wishlist <span class="badge rounded badge-primary">2</span></a>
-                    <a href="account-profile.html" class="dropdown-item has-icon"><i data-feather="settings"></i>Account
+                    <a href="{{ route('customer.profile') }}" class="dropdown-item has-icon"><i data-feather="settings"></i>Account
                         Setting</a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{  route('checkout.logout') }}" class="dropdown-item has-icon text-danger"><i
+                    <a href="{{  route('customer.logout') }}" class="dropdown-item has-icon text-danger"><i
                             data-feather="log-out"></i>Logout</a>
                 </div>
             </li>
@@ -57,9 +57,9 @@
         <!-- Login/Registration -->
         <nav class="nav nav-lang ml-auto">
             <!-- push it to the right -->
-            <a class="nav-link active" href="javascript:void(0)">Registration</a>
+            <a class="nav-link" href="{{ route('customer.registerForm') }}">Registration</a>
             <a class="nav-link pipe">|</a>
-            <a class="nav-link" href="javascript:void(0)">Login</a>
+            <a class="nav-link" href="{{ route('customer.loginForm') }}">Login</a>
         </nav>
         @endif
 

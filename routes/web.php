@@ -36,7 +36,18 @@ Route::post('checkout/shipping/store', 'CheckoutController@shippingStore')->name
 Route::get('checkout/payment', 'CheckoutController@payment')->name('checkout.payment');
 Route::post('checkout/order', 'CheckoutController@order')->name('checkout.order');
 Route::get('checkout/confirm', 'CheckoutController@confirm')->name('checkout.confirm');
-Route::get('checkout/logout', 'CheckoutController@logout')->name('checkout.logout');
+
+//Customer Route
+Route::get('customer/register', 'CustomerController@registerForm')->name('customer.registerForm');
+Route::post('customer/register', 'CustomerController@register')->name('customer.register');
+Route::get('customer/login', 'CustomerController@loginForm')->name('customer.loginForm');
+Route::post('customer/login', 'CustomerController@login')->name('customer.login');
+Route::get('customer/profile', 'CustomerController@profile')->name('customer.profile');
+Route::post('customer/profile', 'CustomerController@profileUpdate')->name('customer.profile-update');
+Route::get('customer/order', 'CustomerController@order')->name('customer.order');
+Route::get('customer/wishlist', 'CustomerController@wishlist')->name('customer.wishlist');
+Route::get('customer/logout', 'CustomerController@logout')->name('customer.logout');
+
 
 //Customer Review Route
 Route::post('customer/review', 'ReviewController@review')->name('customer.review');
