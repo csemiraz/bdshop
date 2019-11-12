@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
-use App\Order;
 use App\Mail\CustomerRegistrationMail;
+use App\Order;
+use App\Product;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -146,7 +147,8 @@ class CustomerController extends Controller
     {
         if(Session::has('customerId')){
             $customer = Customer::find(Session::get('customerId'));
-            return view('front-end.customer.wishlist', compact('customer'));
+            $wishLists = $customer->wishListProducts;
+            return view('front-end.customer.wishlist', compact('customer', 'wishLists'));
         }
         else {
             Toastr::warning('Login or Registered first', 'Warning');
@@ -154,6 +156,38 @@ class CustomerController extends Controller
 
         }
         
+    }
+
+    public function wishlistStore($id)
+    {
+        if(Session::has('customerId')) {
+            $customer = Customer::find(Session::get('customerId'));
+            $product = Product::where('id', $id)->first();
+            $wishList = $customer->wishListProducts()->where('product_id', $product->id)->count();
+
+            if($wishList==0){
+                $customer->wishListProducts()->attach($id);
+                Toastr::success(':) Added to your wishlish', 'Success');
+                return redirect()->back();
+            }
+            else {
+                $customer->wishListProducts()->detach($id);
+                Toastr::success(':) Removed from your wishlish', 'Success');
+                return redirect()->back();
+            }
+        }
+        else {
+            Toastr::info('Login or registered first to add wishlist', 'Info');
+                return redirect()->route('customer.login');
+        }
+    }
+
+    public function wishlistRemove($id)
+    {
+        $customer = Customer::find(Session::get('customerId'));
+        $customer->wishListProducts()->detach($id);
+        Toastr::success(':) Removed from your wishlish', 'Success');
+        return redirect()->back();   
     }
 
 

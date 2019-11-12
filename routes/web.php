@@ -46,6 +46,8 @@ Route::get('customer/profile', 'CustomerController@profile')->name('customer.pro
 Route::post('customer/profile', 'CustomerController@profileUpdate')->name('customer.profile-update');
 Route::get('customer/order', 'CustomerController@order')->name('customer.order');
 Route::get('customer/wishlist', 'CustomerController@wishlist')->name('customer.wishlist');
+Route::post('customer/wishlist/{id}', 'CustomerController@wishlistStore')->name('customer.wishlistStore');
+Route::get('customer/wishlist/remove/{id}', 'CustomerController@wishlistRemove')->name('customer.wishlistRemove');
 Route::get('customer/logout', 'CustomerController@logout')->name('customer.logout');
 
 

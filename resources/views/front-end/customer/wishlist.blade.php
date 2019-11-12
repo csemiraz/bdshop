@@ -26,42 +26,40 @@
         <div class="col mt-3 mt-md-0">
           <div class="card">
             <div class="card-body">
-              <h3>My Wishlist</h3><hr>
-              
+              <h3>My Wishlist <span style="font-size: 15px" class="badge badge-primary rounded">{{ $wishLists->count() }}</span></h3><hr>
+              @foreach($wishLists as $wishList)
               <div class="card card-product card-product-list shadow-none border-bottom">
-                <a href="shop-single.html"><img class="card-img-top" src="../img/products/1_small.jpg" alt="Card image cap"></a>
+                <a href="{{ route('product-single', ['id'=>$wishList->id, 'name'=>$wishList->name]) }}"><img class="card-img-top" src="{{ asset($wishList->image) }}" alt="Card image cap"></a>
                 <div class="card-body d-flex flex-column justify-content-center">
-                  <a href="shop-single.html" class="card-title">Hanes Hooded Sweatshirt</a>
+                  <a href="{{ route('product-single', ['id'=>$wishList->id, 'name'=>$wishList->name]) }}" class="card-title">{{ $wishList->name }}</a>
                   <div class="attr">
-                    <div class="price mr-3"><span class="h5">$18.56</span></div>
+                    <div class="price mr-3"><span class="h5">৳{{ $wishList->price }}</span></div>
+                    @if($wishList->stock!=0)
                     <div><i data-feather="check-circle" class="text-success"></i> In Stock</div>
+                    @else
+                    <div><i data-feather="check-circle" class="text-danger"></i> Out of Stock</div>
+                    @endif
                   </div>
+
                   <p class="d-flex justify-content-between align-items-center">
-                    <button class="btn rounded-pill btn-outline-primary atc-demo" data-addclass-on-xs="btn-sm">Add to Cart</button>
-                    <button class="btn btn-link btn-icon d-inline-flex text-danger" data-addclass-on-xs="btn-sm" data-toggle="tooltip" title="Remove item"><i data-feather="x"></i></button>
+                    <form action="{{ route('cart.store') }}" method="POST">
+                        @csrf
+                        <input name="product_id" type="hidden" value="{{ $wishList->id }}">
+                        @if($wishList->stock==0)
+                        <button class="btn rounded-pill btn-outline-primary" data-addclass-on-xs="btn-sm" disabled>Add to Cart</button>
+                        @else
+                        <button class="btn rounded-pill btn-outline-primary" data-addclass-on-xs="btn-sm">Add to Cart</button>
+                        @endif
+                    </form>
+                    <a href="{{ route('customer.wishlistRemove', ['id'=>$wishList->id]) }}">
+                      <button class="float-right btn btn-link btn-icon d-inline-flex text-danger" data-addclass-on-xs="btn-sm" data-toggle="tooltip" title="Remove item"><i data-feather="x"></i></button>
+                    </a>
+                    
                   </p>
                 </div>
               </div>
+              @endforeach
               
-              <div class="card card-product card-product-list shadow-none border-bottom">
-                <a href="shop-single.html"><img class="card-img-top" src="../img/products/8_small.jpg" alt="Card image cap"></a>
-                <div class="card-body d-flex flex-column justify-content-center">
-                  <a href="shop-single.html" class="card-title">Slim-Fit Short-Sleeve Printed Shirt</a>
-                  <div class="attr">
-                    <div class="price mr-3"><span class="h5">$25.00</span></div>
-                    <div><i data-feather="x-circle" class="text-danger"></i> Out of Stock</div>
-                  </div>
-                  <p class="d-flex justify-content-between align-items-center">
-                    <button class="btn rounded-pill btn-outline-primary atc-demo" data-addclass-on-xs="btn-sm" disabled>Add to Cart</button>
-                    <button class="btn btn-link btn-icon d-inline-flex text-danger" data-addclass-on-xs="btn-sm" data-toggle="tooltip" title="Remove item"><i data-feather="x"></i></button>
-                  </p>
-                </div>
-              </div>
-              
-              <div class="custom-control custom-checkbox mt-3">
-                <input type="checkbox" class="custom-control-input" id="informCheck" checked>
-                <label class="custom-control-label" for="informCheck">Inform me when item from my wishlist is available</label>
-              </div>
             </div>
           </div>
         </div>

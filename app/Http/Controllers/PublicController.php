@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Cart;
 use App\Brand;
-use App\Review;
-use App\Product;
 use App\Category;
+use App\Customer;
+use App\Product;
+use App\Review;
 use Illuminate\Http\Request;
+
 
 class PublicController extends Controller
 {

@@ -13,7 +13,9 @@ class CartController extends Controller
     public function store(Request $request) 
     {
         $product = Product::find($request->product_id);
-        $cart = Cart::add(array(
+
+        if($product->stock!=0){
+            $cart = Cart::add(array(
                 'id' => $product->id,
                 'name' => $product->name,
                 'price' => round((1-($product->discount/100))*$product->price, 2),  
@@ -30,6 +32,11 @@ class CartController extends Controller
 
         Toastr::success(':) Successfully added to cart', 'Success');
         return redirect()->back();
+        }
+        else {
+            Toastr::info('The product is out of stock', 'Info');
+            return redirect()->back();
+        }
     }
 
     public function index() 

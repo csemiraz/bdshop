@@ -64,7 +64,16 @@
         @foreach($products as $product)
         <div class="card card-product">
             <div class="card-body">
-                <button class="wishlist atw-demo" title="Add to wishlist"><i data-feather="heart"></i></button>
+                
+                
+                <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                    <button class="wishlist" title="Add to wishlist"><i data-feather="heart"></i></button>
+                </a>
+                
+                <form id="customer-wishlist-{{ $product->id }}" action="{{ route('customer.wishlistStore', ['id'=>$product->id]) }}" method="POST" style="display: none">
+                    @csrf
+                </form>
+               
                 <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}"><img class="card-img-top"
                         src="{{ asset($product->image) }}" alt="Card image cap"></a>
                 <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}" class="card-title">{{ $product->name }}</a>

@@ -42,8 +42,8 @@
                     </div>
                     <a href="{{ route('customer.order') }}" class="dropdown-item has-icon"><i data-feather="shopping-cart"></i>My
                         Orders</a>
-                    <a href="" class="dropdown-item has-icon has-badge"><i
-                            data-feather="heart"></i>Wishlist <span class="badge rounded badge-primary">2</span></a>
+                    <a href="{{ route('customer.wishlist') }}" class="dropdown-item has-icon has-badge"><i
+                            data-feather="heart"></i>Wishlist</a>
                     <a href="{{ route('customer.profile') }}" class="dropdown-item has-icon"><i data-feather="settings"></i>Account
                         Setting</a>
                     <div class="dropdown-divider"></div>

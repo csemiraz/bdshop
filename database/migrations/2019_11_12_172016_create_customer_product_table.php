@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCustomerPostTable extends Migration
+class CreateCustomerProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomerPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_post', function (Blueprint $table) {
+        Schema::create('customer_product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('customer_id');
             $table->unsignedBigInteger('product_id');
@@ -32,6 +32,6 @@ class CreateCustomerPostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_post');
+        Schema::dropIfExists('customer_product');
     }
 }
