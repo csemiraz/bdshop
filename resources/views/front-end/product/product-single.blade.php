@@ -79,8 +79,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-6 d-flex align-items-end">
+                                    @if($productSingle->stock==0)
+                                    <button title="Out of stock" type="submit" disabled class="btn btn-primary btn-block rounded-pill">Add to
+                                        Cart</button>
+                                    @else
                                     <button type="submit" class="btn btn-primary btn-block rounded-pill">Add to
                                         Cart</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>
@@ -198,9 +203,11 @@
                     <button class="wishlist atw-demo" title="Add to wishlist"><i data-feather="heart"></i></button>
                     <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}"><img class="card-img-top"
                             src="{{ asset($product->image) }}" alt="Card image cap"></a>
-                    <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}"
-                        class="card-title">{{ $product->name }}</a>
+                    <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}" class="card-title">{{ $product->name }}</a>
                     <span class="badge badge-warning">{{ $product->discount }}% OFF</span>
+                    @if($product->stock<1)
+                    <span class="float-right"><i data-feather="x-circle" class="text-danger"></i> Out of Stock</span>
+                    @endif
                     <div class="price">
                         <span class="h5 del">৳{{ $product->price }}</span>
                         <span class="h5">৳{{ (1-($product->discount/100))*$product->price }}</span>
@@ -210,7 +217,11 @@
                     <form action="{{ route('cart.store') }}" method="POST">
                         @csrf
                         <input name="product_id" type="hidden" value="{{ $product->id }}">
+                        @if($product->stock==0)
+                        <button title="Out of stock" class="btn btn-sm rounded-pill btn-outline-primary btn-block disabled">Add to Cart</button>
+                        @else
                         <button class="btn btn-sm rounded-pill btn-outline-primary btn-block">Add to Cart</button>
+                        @endif
                     </form>
                 </div>
             </div>
