@@ -58,9 +58,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header shadow">
-                    <a class="h5 mb-0 d-flex align-items-center" href="index-2.html">
-                        <img src="{{ asset('assets/front-end/') }}/img/logo.svg" alt="Mimity" class="mr-3">
-                        <strong>Mimity</strong>
+                    <a class="h5 mb-0 d-flex align-items-center" href="{{ route('/') }}">
+                        <img src="{{ asset('assets/front-end/') }}/img/logo.svg" alt="BdShop" class="mr-3">
+                        <strong>BdShop</strong>
                     </a>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -68,48 +68,36 @@
                 </div>
                 <div class="modal-body shadow">
                     <ul class="menu" id="menu">
-                        <li class="no-sub mm-active"><a href="index-2.html"><i data-feather="home"></i> Home</a></li>
+                        <li class="no-sub mm-active"><a href="{{ route('/') }}"><i data-feather="home"></i> Home</a></li>
                         <li>
                             <a href="#" class="has-arrow"><i data-feather="shopping-bag"></i> Shop</a>
                             <ul>
-                                <li><a href="shop-categories.html">Shop Categories</a></li>
-                                <li><a href="shop-grid.html">Shop Grid</a></li>
-                                <li><a href="shop-list.html">Shop List</a></li>
-                                <li><a href="shop-single.html">Single Product</a></li>
-                                <li><a href="shop-single2.html">Single Product v2</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="shipping.html">Checkout</a></li>
+                                <li><a href="{{ route('category.allCategory') }}">Shop Categories</a></li>
+                                <li><a href="{{ route('cart.index') }}">Cart</a></li>
+                                <li><a href="{{ route('checkout.index') }}">Checkout</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" class="has-arrow"><i data-feather="rss"></i> Blog</a>
-                            <ul>
-                                <li><a href="blog-grid.html">Post Grid</a></li>
-                                <li><a href="blog-list.html">Post List</a></li>
-                                <li><a href="blog-single.html">Single Post</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a href="#" class="has-arrow"><i data-feather="user"></i> Account</a>
                             <ul>
-                                <li><a href="account-login.html">Login / Register</a></li>
-                                <li><a href="account-profile.html">Profile Page</a></li>
-                                <li><a href="account-orders.html">Orders List</a></li>
-                                <li><a href="account-wishlist.html" class="has-badge">Wishlist <span
-                                            class="badge rounded badge-primary">2</span></a></li>
-                                <li><a href="account-address.html">Address</a></li>
+                                <li><a href="{{ route('customer.loginForm') }}">Login</a></li>
+                                <li><a href="{{ route('customer.registerForm') }}">Register</a></li>
+
+                                @if(Session::has('customerId'))
+                                <li><a href="{{ route('customer.profile') }}">Profile</a></li>
+                                <li><a href="{{ route('customer.order') }}">Order List</a></li>
+                                <li><a href="{{ route('customer.wishlist') }}">Wish List</a></li>
+                                <li><a href="{{ route('customer.logout') }}">Logout</a></li>
+                                @endif
+                                
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" class="has-arrow"><i data-feather="file"></i> Pages</a>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
-                                <li><a href="compare.html">Compare</a></li>
-                                <li><a href="faq.html">Help / FAQ</a></li>
-                                <li><a href="404.html">404 Not Found</a></li>
-                            </ul>
-                        </li>
+
+                        <li class="no-sub"><a href="{{ route('pages.about-us') }}"><i data-feather="file"></i> About Us</a></li>
+
+                        <li class="no-sub"><a href="{{ route('pages.contact-us') }}"><i data-feather="file"></i> Contact Us</a></li>
+                        
                     </ul>
                 </div>
             </div>

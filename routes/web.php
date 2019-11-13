@@ -21,6 +21,10 @@ Route::get('categories', 'PublicController@allCategory')->name('category.allCate
 Route::get('product/category/{name}', 'PublicController@productCategory')->name('product.category');
 Route::get('product/brand/{name}', 'PublicController@productBrand')->name('product.brand');
 
+//Pages Route
+Route::get('about-us', 'PageController@aboutUs')->name('pages.about-us');
+Route::get('contact-us', 'ContactController@contactUs')->name('pages.contact-us');
+
 // Cart Route
 Route::post('cart/store', 'CartController@store')->name('cart.store');
 Route::get('cart', 'CartController@index')->name('cart.index');

@@ -24,13 +24,13 @@
                 </div>
             </div>
             <div class="col-6 col-lg-3">
-                <h6 class="bold">Mimity</h6>
+                <h6 class="bold">BdShop</h6>
                 <div class="list-group list-group-flush list-group-no-border list-group-sm">
-                    <a href="about.html" class="list-group-item list-group-item-action">About Us</a>
+                    <a href="{{ route('pages.about-us') }}" class="list-group-item list-group-item-action">About Us</a>
                     <a href="javascript:void(0)" class="list-group-item list-group-item-action">Terms and
                         Conditions</a>
                     <a href="javascript:void(0)" class="list-group-item list-group-item-action">Privacy Policy</a>
-                    <a href="faq.html" class="list-group-item list-group-item-action">FAQs</a>
+                    <a href="javascript:void(0)" class="list-group-item list-group-item-action">FAQs</a>
                     <a href="javascript:void(0)" class="list-group-item list-group-item-action">Our Story</a>
                     <a href="javascript:void(0)" class="list-group-item list-group-item-action">Services</a>
                 </div>
@@ -69,4 +69,4 @@
         </div>
     </div>
 </div>
-<div class="copyright">Copyright © 2018 Mimity All right reserved</div>
+<div class="copyright">Copyright © {{ date('Y') }} BdShop All right reserved</div>
