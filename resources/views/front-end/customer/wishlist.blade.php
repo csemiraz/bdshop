@@ -17,7 +17,7 @@
             <div class="list-group list-group-flush">
               <a href="{{ route('customer.profile') }}" class="list-group-item list-group-item-action"><i data-feather="user" class="mr-3"></i> Profile</a>
               <a href="{{ route('customer.order') }}" class="list-group-item list-group-item-action"><i data-feather="shopping-bag" class="mr-3"></i> Orders</a>
-              <a href="javascript:void(0)" class="list-group-item has-badge list-group-item-action active"><i data-feather="heart" class="mr-3"></i> Wishlist <span class="badge rounded badge-primary">2</span></a>
+              <a href="javascript:void(0)" class="list-group-item has-badge list-group-item-action active"><i data-feather="heart" class="mr-3"></i> Wishlist <span class="badge rounded badge-primary">{{ $wishLists->count() }}</span></a>
               <a href="{{ route('customer.logout') }}" class="list-group-item list-group-item-action text-danger"><i data-feather="log-out" class="mr-3"></i> Logout</a>
             </div>
           </div>
@@ -26,7 +26,7 @@
         <div class="col mt-3 mt-md-0">
           <div class="card">
             <div class="card-body">
-              <h3>My Wishlist <span style="font-size: 15px" class="badge badge-primary rounded">{{ $wishLists->count() }}</span></h3><hr>
+              <h3>My Wishlist <span class="badge badge-primary rounded">{{ $wishLists->count() }}</span></h3><hr>
               @foreach($wishLists as $wishList)
               <div class="card card-product card-product-list shadow-none border-bottom">
                 <a href="{{ route('product-single', ['id'=>$wishList->id, 'name'=>$wishList->name]) }}"><img class="card-img-top" src="{{ asset($wishList->image) }}" alt="Card image cap"></a>

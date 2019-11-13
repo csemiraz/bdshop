@@ -64,11 +64,19 @@
         @foreach($products as $product)
         <div class="card card-product">
             <div class="card-body">
-                
-                
+
+                <?php
+                    $customer = App\Customer::find(Session::get('customerId')); 
+                ?>
+                @if(isset($customer) && $customer->wishListProducts()->where('product_id', $product->id)->count()>0)
+                <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                    <button class="wishlist active" title="Add to wishlist"><i data-feather="heart"></i></button>
+                </a>
+                @else
                 <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
                     <button class="wishlist" title="Add to wishlist"><i data-feather="heart"></i></button>
                 </a>
+                @endif
                 
                 <form id="customer-wishlist-{{ $product->id }}" action="{{ route('customer.wishlistStore', ['id'=>$product->id]) }}" method="POST" style="display: none">
                     @csrf
@@ -78,14 +86,17 @@
                         src="{{ asset($product->image) }}" alt="Card image cap"></a>
                 <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}" class="card-title">{{ $product->name }}</a>
                 <span class="badge badge-warning">{{ $product->discount }}% OFF</span>
+
                 @if($product->stock<1)
                 <span class="float-right"><i data-feather="x-circle" class="text-danger"></i> Out of Stock</span>
                 @endif
+                
                 <div class="price">
                     <span class="h5 del">৳{{ $product->price }}</span>
                     <span class="h5">৳{{ (1-($product->discount/100))*$product->price }}</span>
                 </div>
             </div>
+
             <div class="card-footer">
                 <form action="{{ route('cart.store') }}" method="POST">
                     @csrf

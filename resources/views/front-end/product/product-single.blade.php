@@ -18,8 +18,24 @@
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev autohide"><i data-feather="chevron-left"></i></div>
                             <div class="swiper-button-next autohide"><i data-feather="chevron-right"></i></div>
-                            <button class="wishlist atw-demo active" title="Added to wishlist"><i
-                                    data-feather="heart"></i></button>
+                            
+                            <?php
+                                $customer = App\Customer::find(Session::get('customerId')); 
+                            ?>
+                            @if(isset($customer) && $customer->wishListProducts()->where('product_id', $productSingle->id)->count()>0)
+                            <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $productSingle->id }}').submit(); ">
+                                <button class="wishlist active" title="Add to wishlist"><i data-feather="heart"></i></button>
+                            </a>
+                            @else
+                            <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $productSingle->id }}').submit(); ">
+                                <button class="wishlist" title="Add to wishlist"><i data-feather="heart"></i></button>
+                            </a>
+                            @endif
+                            
+                            <form id="customer-wishlist-{{ $productSingle->id }}" action="{{ route('customer.wishlistStore', ['id'=>$productSingle->id]) }}" method="POST" style="display: none">
+                                @csrf
+                            </form>
+
                             <button class="zoom" title="Zoom"><i data-feather="zoom-in"></i></button>
                         </div>
                     </div>
@@ -200,19 +216,39 @@
             @foreach($productRelated as $product)
             <div class="card card-product">
                 <div class="card-body">
-                    <button class="wishlist atw-demo" title="Add to wishlist"><i data-feather="heart"></i></button>
+
+                    <?php
+                        $customer = App\Customer::find(Session::get('customerId')); 
+                    ?>
+                    @if(isset($customer) && $customer->wishListProducts()->where('product_id', $product->id)->count()>0)
+                    <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                        <button class="wishlist active" title="Add to wishlist"><i data-feather="heart"></i></button>
+                    </a>
+                    @else
+                    <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                        <button class="wishlist" title="Add to wishlist"><i data-feather="heart"></i></button>
+                    </a>
+                    @endif
+                    
+                    <form id="customer-wishlist-{{ $product->id }}" action="{{ route('customer.wishlistStore', ['id'=>$product->id]) }}" method="POST" style="display: none">
+                        @csrf
+                    </form>
+                   
                     <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}"><img class="card-img-top"
                             src="{{ asset($product->image) }}" alt="Card image cap"></a>
                     <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}" class="card-title">{{ $product->name }}</a>
                     <span class="badge badge-warning">{{ $product->discount }}% OFF</span>
+
                     @if($product->stock<1)
                     <span class="float-right"><i data-feather="x-circle" class="text-danger"></i> Out of Stock</span>
                     @endif
+                    
                     <div class="price">
                         <span class="h5 del">৳{{ $product->price }}</span>
                         <span class="h5">৳{{ (1-($product->discount/100))*$product->price }}</span>
                     </div>
                 </div>
+
                 <div class="card-footer">
                     <form action="{{ route('cart.store') }}" method="POST">
                         @csrf

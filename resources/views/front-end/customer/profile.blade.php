@@ -17,7 +17,7 @@
             <div class="list-group list-group-flush">
               <a href="javascript:void(0)" class="list-group-item list-group-item-action active"><i data-feather="user" class="mr-3"></i> Profile</a>
               <a href="{{ route('customer.order') }}" class="list-group-item list-group-item-action"><i data-feather="shopping-bag" class="mr-3"></i> Orders</a>
-              <a href="{{ route('customer.wishlist') }}" class="list-group-item has-badge list-group-item-action"><i data-feather="heart" class="mr-3"></i> Wishlist <span class="badge rounded badge-primary">2</span></a>
+              <a href="{{ route('customer.wishlist') }}" class="list-group-item has-badge list-group-item-action"><i data-feather="heart" class="mr-3"></i> Wishlist <span class="badge rounded badge-primary"></span></a>
               <a href="{{ route('customer.logout') }}" class="list-group-item list-group-item-action text-danger"><i data-feather="log-out" class="mr-3"></i> Logout</a>
             </div>
           </div>
