@@ -21,10 +21,6 @@ Route::get('categories', 'PublicController@allCategory')->name('category.allCate
 Route::get('product/category/{name}', 'PublicController@productCategory')->name('product.category');
 Route::get('product/brand/{name}', 'PublicController@productBrand')->name('product.brand');
 
-//Pages Route
-Route::get('about-us', 'PageController@aboutUs')->name('pages.about-us');
-Route::get('contact-us', 'ContactController@contactUs')->name('pages.contact-us');
-
 // Cart Route
 Route::post('cart/store', 'CartController@store')->name('cart.store');
 Route::get('cart', 'CartController@index')->name('cart.index');
@@ -54,9 +50,18 @@ Route::post('customer/wishlist/{id}', 'CustomerController@wishlistStore')->name(
 Route::get('customer/wishlist/remove/{id}', 'CustomerController@wishlistRemove')->name('customer.wishlistRemove');
 Route::get('customer/logout', 'CustomerController@logout')->name('customer.logout');
 
-
 //Customer Review Route
 Route::post('customer/review', 'ReviewController@review')->name('customer.review');
+
+//Pages Route
+Route::get('about-us', 'PageController@aboutUs')->name('pages.about-us');
+
+//Contact page route
+Route::get('contact-us', 'ContactController@contactUs')->name('pages.contact-us');
+Route::post('contact', 'ContactController@store')->name('contact.store');
+
+//Subscriber Route
+Route::post('subscriber', 'SubscriberController@store')->name('subscriber.store');
 
 //Admin Route
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {

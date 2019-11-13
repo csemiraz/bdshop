@@ -1,17 +1,20 @@
 <div class="footer">
     <div class="container">
         <div class="row no-gutters">
+
             <div class="col-sm-6 col-lg-3 text-center px-3">
                 <h5 class="bold">SUBSCRIBE</h5>
                 <p>and get <strong class="text-primary">10% discount</strong></p>
-                <form>
+                <form action="{{ route('subscriber.store') }}" method="POST">
+                    @csrf
                     <div class="form-group">
-                        <input type="email" class="form-control rounded-pill text-center"
+                        <input name="email" type="email" required class="form-control rounded-pill text-center"
                             placeholder="Enter your email">
                     </div>
-                    <button type="button" class="btn btn-primary btn-block rounded-pill">SUBSCRIBE</button>
+                    <button type="submit" class="btn btn-primary btn-block rounded-pill">SUBSCRIBE</button>
                 </form>
             </div>
+
             <div class="col-6 col-lg-3">
                 <h6 class="bold">Customer Service</h6>
                 <div class="list-group list-group-flush list-group-no-border list-group-sm">

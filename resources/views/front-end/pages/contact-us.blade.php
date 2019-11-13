@@ -19,49 +19,58 @@
             <!-- Contact Us Form -->
             <div class="col-md-6 mt-3 mt-md-0">
               <h3 class="bold">Contact Us</h3>
-              <form class="mt-3 form-style-1">
+
+              <form action="{{ route('contact.store') }}" method="POST" class="mt-3 form-style-1">
+                @csrf
+
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <div class="media">
                       <span><i class="fa fa-map-marker fa-fw text-info"></i></span>
                       <div class="media-body ml-1">
-                        <div>767 Fifth Avenue</div>
-                        <div>New York</div>
-                        <div>NY 10153</div>
+                        <div>West Agargoan</div>
+                        <div>Dhaka</div>
+                        <div>BD, 1207</div>
                       </div>
                     </div>
                   </div>
                   <div class="form-group col-md-6">
                     <div class="media mb-3 mb-md-0">
                       <span><i class="fa fa-phone fa-fw text-info"></i></span>
-                      <div class="media-body ml-1">212 123 456 789</div>
+                      <div class="media-body ml-1">+8801972493231</div>
                     </div>
                     <div class="media">
                       <span><i class="fa fa-envelope fa-fw text-info"></i></span>
-                      <div class="media-body ml-1">support@mimity.com</div>
+                      <div class="media-body ml-1">support@bdshop.com</div>
                     </div>
                   </div>
                 </div>
+
+
                 <div class="form-group">
                   <span class="input-icon">
                     <i data-feather="user"></i>
-                    <input type="text" class="form-control" placeholder="Your Name">
+                    <input name="name" type="text" class="form-control" placeholder="Your Name">
                   </span>
                 </div>
+
                 <div class="form-group">
                   <span class="input-icon">
                     <i data-feather="mail"></i>
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input name="email" type="email" class="form-control" placeholder="Email">
                   </span>
                 </div>
+
                 <div class="form-group">
                   <span class="input-icon">
                     <i data-feather="message-square"></i>
-                    <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                    <textarea name="message" class="form-control" rows="3" placeholder="Message"></textarea>
                   </span>
                 </div>
-                <button type="button" class="btn btn-primary">Send</button>
+
+                <button type="submit" class="btn btn-primary">Send</button>
               </form>
+
             </div>
             <!-- /Contact Us Form -->
 
