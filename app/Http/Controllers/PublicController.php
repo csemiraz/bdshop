@@ -34,7 +34,7 @@ class PublicController extends Controller
     public function allCategory()
     {
         $allCategories = Category::latest()->where('status', 1)->paginate(8);
-        return view('front-end.category.allCategory', compact('allCategories'));
+        return view('front-end.category.all-category', compact('allCategories'));
     }
 
     public function productCategory ($name)

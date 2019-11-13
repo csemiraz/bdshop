@@ -10,7 +10,7 @@
 
         <!-- Main navigation -->
         <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
-          <li class="nav-item"><a class="nav-link active" href="{{ route('/') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link {{ Route::currentRouteName()=='/' ? 'active' : '' }}" href="{{ route('/') }}">Home</a></li>
           <li class="nav-item dropdown dropdown-hover">
             <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="shop-categories.html" role="button" aria-haspopup="true" aria-expanded="false">
               Shop <i data-feather="chevron-down"></i>
@@ -23,7 +23,7 @@
           </li>
           
           <li class="nav-item dropdown dropdown-hover">
-            <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               Account <i data-feather="chevron-down"></i>
             </a>
             <div class="dropdown-menu">
@@ -38,9 +38,9 @@
             </div>
           </li>
 
-        <li class="nav-item"><a class="nav-link" href="{{ route('pages.about-us') }}">About Us</a></li>
+        <li class="nav-item"><a class="nav-link {{ Route::currentRouteName()=='pages.about-us' ? 'active' : '' }}" href="{{ route('pages.about-us') }}">About Us</a></li>
 
-        <li class="nav-item"><a class="nav-link" href="{{ route('pages.contact-us') }}">Contact Us</a></li>
+        <li class="nav-item"><a class="nav-link {{ Route::currentRouteName()=='pages.contact-us' ? 'active' : '' }}" href="{{ route('pages.contact-us') }}">Contact Us</a></li>
           
         </ul>
         <!-- /Main navigation -->
