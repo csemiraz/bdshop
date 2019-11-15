@@ -59,6 +59,8 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::remove($id);
+      
+        Toastr::info(':) Removed from cart', 'Info');
         return redirect()->back();
     }
 

@@ -72,8 +72,6 @@
                                         <i data-feather="more-vertical"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <button class="dropdown-item" type="button"><i data-feather="heart"></i> Move to
-                                            wishlist</button>
                                         <a href="{{ route('cart.destroy', ['id'=>$cartInfo->id]) }}">
                                             <button class="dropdown-item text-danger" type="button"><i data-feather="x"></i>
                                                 Remove item</button>

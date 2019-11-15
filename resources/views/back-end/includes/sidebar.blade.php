@@ -38,7 +38,7 @@
         <ul class="nav nav-primary">
             <li class="nav-item active">
                 <a href="{{ route('admin.dashboard') }}">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
                 </a>
             </li>

@@ -61,11 +61,59 @@
         </form>
         <!-- /Search form -->
 
-        <!-- Cart -->
+       <!-- Cart -->
         <ul class="nav ml-auto ml-sm-0">
-          <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}"><i data-feather="shopping-cart"></i> Cart</a></li>
+          
+          @php
+            $carts = Cart::getContent();
+          @endphp
+          <!-- Cart dropdown -->
+          <li class="nav-item dropdown dropdown-hover dropdown-cart">
+            <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <i data-feather="shopping-cart"></i>
+              <span class="badge badge-primary">{{ $carts->count() }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              
+              
+              @foreach($carts as $cart)
+              <div class="media">
+                <a href="{{ route('product-single', ['name'=>$cart->name,'id'=>$cart->id]) }}">
+                  <img src="{{ asset($cart->attributes->image) }}" width="50" height="50" alt="{{ $cart->name }}">
+                </a>
+
+                <div class="media-body">
+                  <a href="{{ route('product-single', ['name'=>$cart->name,'id'=>$cart->id]) }}" title="Product Details">{{ $cart->name }}</a>
+                  <span class="qty">{{ $cart->quantity }}</span> x <span class="price">৳{{ $cart->price }}</span>
+
+                  <a href="{{ route('cart.destroy', ['id'=>$cart->id]) }}">
+                  <button type="button" class="close" aria-label="Close"><i data-feather="x-circle"></i></button>
+                  </a>
+                </div>
+
+              </div>  
+              @endforeach
+              
+              
+              <div class="d-flex justify-content-between pb-3 pt-2">
+                <span>Total</span>
+                <strong>৳{{ Cart::getTotal () }}</strong>
+              </div>
+
+              <div class="d-flex justify-content-between pb-2">
+                <div class="w-100 mr-1">
+                  <a href="{{ route('cart.index') }}" class="btn btn-block rounded-pill btn-secondary">View Cart</a>
+                </div>
+                <div class="w-100 ml-1">
+                  <a href="{{ route('checkout.index') }}" class="btn btn-block rounded-pill btn-primary">Checkout</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- /Cart dropdown -->
         </ul>
-        <!-- Cart -->
+
+       <!-- Cart -->
 
       </div><!-- /.container -->
     </header>
