@@ -12,7 +12,7 @@
         <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
           <li class="nav-item"><a class="nav-link {{ Route::currentRouteName()=='/' ? 'active' : '' }}" href="{{ route('/') }}">Home</a></li>
           <li class="nav-item dropdown dropdown-hover">
-            <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="shop-categories.html" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="categories" role="button" aria-haspopup="true" aria-expanded="false">
               Shop <i data-feather="chevron-down"></i>
             </a>
             <div class="dropdown-menu">
@@ -48,12 +48,13 @@
         <!-- /Main navigation -->
 
         <!-- Search form -->
-        <form class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
+        <form action="{{ route('search') }}" method="GET" class="form-inline form-search ml-auto mr-0 mr-sm-1 d-none d-sm-flex">
+          
           <div class="input-group input-group-search">
             <div class="input-group-prepend">
               <button class="btn btn-light d-flex d-sm-none search-toggle" type="button"><i data-feather="chevron-left"></i></button>
             </div>
-            <input type="text" class="form-control border-0 bg-light input-search" placeholder="Search...">
+            <input name="query" type="text" class="form-control border-0 bg-light input-search" placeholder="Search...">
             <div class="input-group-append">
               <button class="btn btn-light" type="submit"><i data-feather="search"></i></button>
             </div>
@@ -69,7 +70,7 @@
           @endphp
           <!-- Cart dropdown -->
           <li class="nav-item dropdown dropdown-hover dropdown-cart">
-            <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link nav-icon mr-nis dropdown-toggle forwardable ml-2" data-toggle="dropdown" href="cart" role="button" aria-haspopup="true" aria-expanded="false">
               <i data-feather="shopping-cart"></i>
               <span class="badge badge-primary">{{ $carts->count() }}</span>
             </a>

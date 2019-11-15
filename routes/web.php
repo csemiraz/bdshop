@@ -63,6 +63,9 @@ Route::post('contact', 'ContactController@store')->name('contact.store');
 //Subscriber Route
 Route::post('subscriber', 'SubscriberController@store')->name('subscriber.store');
 
+//Search Route
+Route::get('search', 'SearchController@search')->name('search');
+
 //Admin Route
 Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']], function() {
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
