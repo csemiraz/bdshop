@@ -37,7 +37,7 @@
                             class="img-thumbnail rounded-circle mr-2 size50x50">
                         <div class="media-body">
                             <strong>{{ Session::get('customerFirstName').' '.Session::get('customerLastName') }}</strong>
-                            <div class="small counter">1113 points</div>
+                            <div class="small counter"></div>
                         </div>
                     </div>
                     <a href="{{ route('customer.order') }}" class="dropdown-item has-icon"><i data-feather="shopping-cart"></i>My

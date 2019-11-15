@@ -83,6 +83,8 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'a
     Route::resource('suppliers', 'SupplierController');
 
     Route::resource('products', 'ProductController'); 
+
+    Route::resource('sliders', 'SliderController');
 });
 
 Route::group(['prefix'=>'user', 'namespace'=>'user', 'middleware'=>['auth', 'user']], function() {

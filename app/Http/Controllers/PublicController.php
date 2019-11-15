@@ -7,6 +7,7 @@ use App\Category;
 use App\Customer;
 use App\Product;
 use App\Review;
+use App\Slider;
 use Illuminate\Http\Request;
 
 
@@ -15,10 +16,12 @@ class PublicController extends Controller
     public function index() {
         $homeCategories = Category::latest()->where('status', 1)->take(4)->get();
         $products = Product::latest()->where('status', 1)->paginate(8);
+        $sliders = Slider::latest()->where('status', 1)->take(3)->get();
 
         return view('front-end.home.home', [
             'homeCategories' => $homeCategories,
             'products' => $products,
+            'sliders' => $sliders,
         ]);
     }
 

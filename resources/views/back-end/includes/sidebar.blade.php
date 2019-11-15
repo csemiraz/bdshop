@@ -138,6 +138,28 @@
             </li>
 
             <li class="nav-item">
+                <a data-toggle="collapse" href="#slider">
+                    <i class="fab fa-slideshare"></i>
+                    <p>Slider</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="slider">
+                    <ul class="nav nav-collapse">
+                        <li>
+                            <a href="{{ route('sliders.create') }}">
+                                <span class="sub-item">Create Slider</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sliders.index') }}">
+                                <span class="sub-item">Manage Slider</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
                 <a href="">
                     <i class="fas fa-desktop"></i>
                     <p>Widgets</p>

@@ -27,8 +27,10 @@
               Account <i data-feather="chevron-down"></i>
             </a>
             <div class="dropdown-menu">
+              @if(!Session::has('customerId'))
               <a class="dropdown-item" href="{{ route('customer.loginForm') }}">Login</a>
               <a class="dropdown-item" href="{{ route('customer.registerForm') }}">Register</a>
+              @endif
               @if(Session::has('customerId'))
               <a class="dropdown-item" href="{{ route('customer.profile') }}">Profile Page</a>
               <a class="dropdown-item" href="{{ route('customer.order') }}">Orders List</a>
