@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use App\Exports\CustomersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -141,6 +143,11 @@ class CustomerController extends Controller
 
         }
         
+    }
+
+    public function excel()
+    {
+        return Excel::download(new CustomersExport, 'orders.xlsx');
     }
 
     public function wishlist()

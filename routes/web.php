@@ -45,6 +45,8 @@ Route::post('customer/login', 'CustomerController@login')->name('customer.login'
 Route::get('customer/profile', 'CustomerController@profile')->name('customer.profile');
 Route::post('customer/profile', 'CustomerController@profileUpdate')->name('customer.profile-update');
 Route::get('customer/order', 'CustomerController@order')->name('customer.order');
+//customer order excel
+Route::get('customer/order/excel', 'CustomerController@excel')->name('customer.excel');
 Route::get('customer/wishlist', 'CustomerController@wishlist')->name('customer.wishlist');
 Route::post('customer/wishlist/{id}', 'CustomerController@wishlistStore')->name('customer.wishlistStore');
 Route::get('customer/wishlist/remove/{id}', 'CustomerController@wishlistRemove')->name('customer.wishlistRemove');

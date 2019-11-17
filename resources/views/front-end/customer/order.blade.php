@@ -50,7 +50,11 @@
                   </tbody>
                 </table>
               </div>
-              <button class="btn btn-outline-success rounded-pill btn-sm"><i data-feather="file-text"></i> Download as xls</button>
+              @if($orders->count()!=0)
+              <a href="{{ route('customer.excel') }}">
+                <button class="btn btn-outline-success rounded-pill btn-sm"><i data-feather="file-text"></i> Download as xls</button>
+              </a>
+              @endif
             </div>
           </div>
         </div>
