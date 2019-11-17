@@ -88,6 +88,11 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'a
     Route::resource('products', 'ProductController'); 
 
     Route::resource('sliders', 'SliderController');
+
+    Route::get('orders', 'OrderController@index')->name('orders.index');
+    Route::get('orders/show/{id}', 'OrderController@show')->name('orders.show');
+    Route::get('orders/invoice/{id}', 'OrderController@invoice')->name('orders.invoice');
+    Route::get('orders/download-invoice/{id}', 'OrderController@downloadInvoice')->name('orders.download-invoice');
 });
 
 Route::group(['prefix'=>'user', 'namespace'=>'user', 'middleware'=>['auth', 'user']], function() {

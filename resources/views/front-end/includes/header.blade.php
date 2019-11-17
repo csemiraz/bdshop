@@ -12,8 +12,9 @@
         <ul class="nav nav-main ml-auto d-none d-lg-flex"> <!-- hidden on md -->
           <li class="nav-item"><a class="nav-link {{ Route::currentRouteName()=='/' ? 'active' : '' }}" href="{{ route('/') }}">Home</a></li>
           <li class="nav-item dropdown dropdown-hover">
-            <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="categories" role="button" aria-haspopup="true" aria-expanded="false">
-              Shop <i data-feather="chevron-down"></i>
+            <a class="nav-link dropdown-toggle forwardable {{ Request::is('categories') ? 'active' : '' }}" data-toggle="dropdown" href="categories" role="button" aria-haspopup="true" aria-expanded="false">
+              Shop 
+              <i data-feather="chevron-down"></i>
             </a>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="{{ route('category.allCategory') }}">Shop Categories</a>
@@ -23,9 +24,11 @@
           </li>
           
           <li class="nav-item dropdown dropdown-hover">
+            
             <a class="nav-link dropdown-toggle forwardable" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
               Account <i data-feather="chevron-down"></i>
             </a>
+            
             <div class="dropdown-menu">
               @if(!Session::has('customerId'))
               <a class="dropdown-item" href="{{ route('customer.loginForm') }}">Login</a>

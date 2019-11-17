@@ -160,9 +160,9 @@
             </li>
 
             <li class="nav-item">
-                <a href="">
+                <a href="{{ route('orders.index') }}">
                     <i class="fas fa-desktop"></i>
-                    <p>Widgets</p>
+                    <p>Manage orders</p>
                 </a>
             </li>
         </ul>

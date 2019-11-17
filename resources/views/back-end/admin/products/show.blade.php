@@ -12,7 +12,7 @@
                      Product Details Information
                  </div>
                  <div class="card-body">
-                     <table class="table striped table-hover">
+                     <table class="table table-hover">
                          <tr class=" bg-light text-success">
                              <th>Title</th>
                              <th>:</th>

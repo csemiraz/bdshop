@@ -18,6 +18,7 @@
 
 
 	<!-- Searching Products -->
+	@if($products->count()>0)
 	<div class="container">
 	    <div class="card-deck card-deck-product mt-3 mb-2 mb-sm-0">
 	        @foreach($products as $product)
@@ -71,10 +72,22 @@
 	        @endforeach
 			</div>
 		</div>
+
+		@else
 		<!-- /Searching Products -->
 
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header bg-light">
+							<h4 class="text-danger">Sorry, Nothing matched your search criteria. Please try again with some different keywords.</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endif
 
-	
-
-
+	<br/>
 @endsection

@@ -10,4 +10,14 @@ class Order extends Model
     {
     	return $this->belongsTo('App\Customer');
     }
+
+    public function shipping()
+    {
+    	return $this->belongsTo('App\Shipping');
+    }
+
+    public function payment()
+    {
+    	return $this->hasOne('App\Payment');
+    }
 }

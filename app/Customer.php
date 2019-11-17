@@ -24,4 +24,5 @@ class Customer extends Model
     {
     	return $this->belongsToMany('App\Product')->withTimeStamps();
     }
+
 }
