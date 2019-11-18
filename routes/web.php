@@ -21,6 +21,10 @@ Route::get('categories', 'PublicController@allCategory')->name('category.allCate
 Route::get('product/category/{name}', 'PublicController@productCategory')->name('product.category');
 Route::get('product/brand/{name}', 'PublicController@productBrand')->name('product.brand');
 
+/*  HTTP Request Routing  */
+Route::get('404', 'ErrorHandlerController@error404')->name('404');
+Route::get('405', 'ErrorHandlerController@error405')->name('405');
+
 // Cart Route
 Route::post('cart/store', 'CartController@store')->name('cart.store');
 Route::get('cart', 'CartController@index')->name('cart.index');

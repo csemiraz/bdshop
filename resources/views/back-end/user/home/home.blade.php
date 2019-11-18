@@ -9,6 +9,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     <style>
@@ -90,16 +92,14 @@
             <div class="title m-b-md">
                 Welcome {{ Auth::user()->name }}
             </div>
+            <div class="mb-3">
+                <h3>Thank you for registration. Admin permission is needed to perform next action.
+                You can register as a customer. Visit the link below.</h3>
+            </div>
 
             <div class="links">
-                <a href="https://laravel.com/docs">Docs</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://blog.laravel.com">Blog</a>
-                <a href="https://nova.laravel.com">Nova</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://vapor.laravel.com">Vapor</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
+                <a class="btn btn-success" href="{{ route('/') }}">Visit Site</a>
+                <a class="btn btn-success" href="{{ route('customer.registerForm') }}">Customer Registration</a>
             </div>
         </div>
     </div>
