@@ -185,40 +185,40 @@
                     <div class="quick-actions-scroll scrollbar-outer">
                         <div class="quick-actions-items">
                             <div class="row m-0">
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('add-category') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-file-1"></i>
-                                        <span class="text">Generated Report</span>
+                                        <span class="text">Create New Category</span>
                                     </div>
                                 </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('brands.create') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-database"></i>
-                                        <span class="text">Create New Database</span>
+                                        <span class="text">Create New Brand</span>
                                     </div>
                                 </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('suppliers.create') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-pen"></i>
-                                        <span class="text">Create New Post</span>
+                                        <span class="text">Create New Supplier</span>
                                     </div>
                                 </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('products.create') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-interface-1"></i>
-                                        <span class="text">Create New Task</span>
+                                        <span class="text">Create New Product</span>
                                     </div>
                                 </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('sliders.create') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-list"></i>
-                                        <span class="text">Completed Tasks</span>
+                                        <span class="text">Create New Slider</span>
                                     </div>
                                 </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
+                                <a class="col-6 col-md-4 p-0" href="{{ route('orders.index') }}">
                                     <div class="quick-actions-item">
                                         <i class="flaticon-file"></i>
-                                        <span class="text">Create New Invoice</span>
+                                        <span class="text">Manage All Order</span>
                                     </div>
                                 </a>
                             </div>
@@ -241,7 +241,7 @@
                                         alt="image profile" class="avatar-img rounded"></div>
                                 <div class="u-text">
                                     <h4>{{ Auth::user()->name }}</h4>
-                                    <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html"
+                                    <p class="text-muted">{{ Auth::user()->email }}</p><a href="#"
                                         class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                 </div>
                             </div>

@@ -56,9 +56,9 @@
     <!-- /All Brands -->
 
    
-    <h4 class="bold text-center mt-gutter">Products</h4>
-
     <!-- Featured Products -->
+    
+    <h4 class="alert alert-primary bold text-center mt-gutter">Products</h4>
             
     <div class="card-deck card-deck-product mt-3 mb-2 mb-sm-0">
         @foreach($products as $product)
@@ -120,6 +120,67 @@
         </div>
     </div>
     <!-- / Products Pagination-->
+
+  
+    <!-- Top Rated Products -->
+
+    <h4 class="alert alert-primary bold text-center mt-gutter">Top Rated Products</h4>
+
+            
+    <div class="card-deck card-deck-product mt-3 mb-2 mb-sm-0">
+        @foreach($topRatedProducts as $product)
+        <div class="card card-product">
+            <div class="card-body">
+
+                <?php
+                    $customer = App\Customer::find(Session::get('customerId')); 
+                ?>
+                @if(isset($customer) && $customer->wishListProducts()->where('product_id', $product->id)->count()>0)
+                <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                    <button class="wishlist active" title="Add to wishlist"><i data-feather="heart"></i></button>
+                </a>
+                @else
+                <a href="javascript:void(0)" onclick="document.getElementById('customer-wishlist-{{ $product->id }}').submit(); ">
+                    <button class="wishlist" title="Add to wishlist"><i data-feather="heart"></i></button>
+                </a>
+                @endif
+                
+                <form id="customer-wishlist-{{ $product->id }}" action="{{ route('customer.wishlistStore', ['id'=>$product->id]) }}" method="POST" style="display: none">
+                    @csrf
+                </form>
+               
+                <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}"><img class="card-img-top"
+                        src="{{ asset($product->image) }}" alt="Card image cap"></a>
+                <a href="{{ route('product-single', ['id'=>$product->id, 'name'=>$product->name]) }}" class="card-title">{{ $product->name }}</a>
+                <span class="badge badge-warning">{{ $product->discount }}% OFF</span>
+
+                @if($product->stock<1)
+                <span class="float-right"><i data-feather="x-circle" class="text-danger"></i> Out of Stock</span>
+                @endif
+                
+                <div class="price">
+                    <span class="h5 del">৳{{ $product->price }}</span>
+                    <span class="h5">৳{{ (1-($product->discount/100))*$product->price }}</span>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <form action="{{ route('cart.store') }}" method="POST">
+                    @csrf
+                    <input name="product_id" type="hidden" value="{{ $product->id }}">
+                    @if($product->stock==0)
+                    <button title="Out of stock" class="btn btn-sm rounded-pill btn-outline-primary btn-block disabled">Add to Cart</button>
+                    @else
+                    <button class="btn btn-sm rounded-pill btn-outline-primary btn-block">Add to Cart</button>
+                    @endif
+                </form>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    <!-- /Top Rated Products -->
+    <br>
+
 </div>
 
 @endsection

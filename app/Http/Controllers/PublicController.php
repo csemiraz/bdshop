@@ -18,10 +18,16 @@ class PublicController extends Controller
         $products = Product::latest()->where('status', 1)->paginate(8);
         $sliders = Slider::latest()->where('status', 1)->take(3)->get();
 
+        $topRatedProducts = Product::withCount('reviews')
+                                    ->orderBy('reviews_count', 'desc')
+                                    ->take(12)
+                                    ->get();
+
         return view('front-end.home.home', [
             'homeCategories' => $homeCategories,
             'products' => $products,
             'sliders' => $sliders,
+            'topRatedProducts' => $topRatedProducts,
         ]);
     }
 
